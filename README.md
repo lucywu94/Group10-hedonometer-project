@@ -47,3 +47,32 @@ python3 src/run_analysis.py
 After running, look in:
 - `figures/` — PNG plots
 - `tables/` — CSV summary tables
+
+
+
+
+## Dataset
+We use the labMT 1.0 dataset (Dodds et al., 2011), which includes 10,222 English words rated for happiness.
+
+Each word has:
+- An average happiness score
+- A standard deviation of ratings
+- Frequency ranks in four corpora:
+  - Twitter
+  - Google Books
+  - New York Times
+  - Lyrics
+
+
+## Data Cleaning
+
+The dataset was loaded as a tab-delimited file using pandas. The first two metadata rows were skipped. Missing values marked as "--" were converted to NaN.
+
+The final dataset contains 10,222 rows and 8 columns.
+
+We confirmed that:
+- No duplicate words are present.
+- All happiness-related variables are numeric.
+- Rank columns contain 5,222 missing values each, indicating words not present in the top 5000 most frequent words of the respective corpus.
+
+A cleaned dataset was saved as `data/labmt_clean.csv`.
