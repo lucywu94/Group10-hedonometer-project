@@ -47,3 +47,28 @@ python3 src/run_analysis.py
 After running, look in:
 - `figures/` — PNG plots
 - `tables/` — CSV summary tables
+
+| category                           | word       |   happiness_average |   happiness_standard_deviation |
+|:-----------------------------------|:-----------|--------------------:|-------------------------------:|
+| Very positive                      | laughter   |                8.5  |                         0.9313 |
+| Very positive                      | happiness  |                8.44 |                         0.9723 |
+| Very positive                      | love       |                8.42 |                         1.1082 |
+| Very positive                      | happy      |                8.3  |                         0.9949 |
+| Very positive                      | laughed    |                8.26 |                         1.1572 |
+| Very negative                      | terrorist  |                1.3  |                         0.9091 |
+| Very negative                      | suicide    |                1.3  |                         0.8391 |
+| Very negative                      | rape       |                1.44 |                         0.7866 |
+| Very negative                      | terrorism  |                1.48 |                         0.9089 |
+| Very negative                      | murder     |                1.48 |                         1.015  |
+| Highly contested (high SD)         | fucking    |                4.64 |                         2.926  |
+| Highly contested (high SD)         | fuckin     |                3.86 |                         2.7405 |
+| Highly contested (high SD)         | fucked     |                3.56 |                         2.7117 |
+| Highly contested (high SD)         | pussy      |                4.8  |                         2.665  |
+| Highly contested (high SD)         | whiskey    |                5.72 |                         2.6422 |
+| Weird / culturally loaded (chosen) | christ     |                6.16 |                         2.3067 |
+| Weird / culturally loaded (chosen) | capitalism |                5.16 |                         2.4524 |
+| Weird / culturally loaded (chosen) | islam      |                4.68 |                         2.325  |
+| Weird / culturally loaded (chosen) | porn       |                4.18 |                         2.4302 |
+| Weird / culturally loaded (chosen) | zombies    |                4    |                         2.3733 |
+
+This twenty word table shows that the LabMT happiness score collects culturally situated judgments rather than fixed emotional meanings. The words that score the highest in positive words (laughter, happiness, love, happy, laughed) are very strongly connected to feelings like joy, affection, and bonding and very clearly used in positive contexts. The very negative words on the other hand (terrorist, suicide, rape, terrorism, murder) have a very low score because they are connected to themes such as death, harm and violence, and are understood to be very negative regardless of what the context is. The “highly contested” words (fucking, fuckin, fucked, pussy, whiskey) show how disagreement can occur when the wrds used are too taboo, context dependent or slang, since slang can be used refering to sexual, humourous or insult. While whiskey can mean holding many meanings ranging to celebration, religion or addiction. And lastly, the weird/culturally loaded words (Christ, Islam, capitalism, porn, zombies) show how schools of thought, religion and certain aspects of media can shape someone’s interpretations. Religious terms on social media platforms can bring conflict or stigma to a conversation, whereas for others, it can be a form of identity expression and comfort. “Capitalism” can signal opportunity or exploitation depending on an indiciduals political stance. Words popular within pop culture, like “zombies”, can be used for entertainment in a playful manner or refer to fear, disgust or in reference to someone’s overall attitude. Hence a difference between these categories can show how the happiness score can be dependent on contextual and community based meanings as much as the disctionary meaning of certain terms. 
