@@ -49,6 +49,7 @@ After running, look in:
 - `tables/` — CSV summary tables
 
 
+
 # Yimai-work Section 1
 ## Dataset
 We use the labMT 1.0 dataset (Dodds et al., 2011), which includes 10,222 English words rated for happiness.
@@ -64,7 +65,6 @@ Each word has:
 
 
 ## Data Cleaning
-
 The dataset was loaded as a tab-delimited file using pandas. The first two metadata rows were skipped. Missing values marked as "--" were converted to NaN.
 
 The final dataset contains 10,222 rows and 8 columns.
@@ -116,3 +116,5 @@ Figure X illustrates these corpus overlaps and highlights the uneven distributio
 | Weird / culturally loaded (chosen) | zombies    |                4    |                         2.3733 |
 
 This twenty word table shows that the LabMT happiness score collects culturally situated judgments rather than fixed emotional meanings. The words that score the highest in positive words (laughter, happiness, love, happy, laughed) are very strongly connected to feelings like joy, affection, and bonding and very clearly used in positive contexts. The very negative words on the other hand (terrorist, suicide, rape, terrorism, murder) have a very low score because they are connected to themes such as death, harm and violence, and are understood to be very negative regardless of what the context is. The “highly contested” words (fucking, fuckin, fucked, pussy, whiskey) show how disagreement can occur when the wrds used are too taboo, context dependent or slang, since slang can be used refering to sexual, humourous or insult. While whiskey can mean holding many meanings ranging to celebration, religion or addiction. And lastly, the weird/culturally loaded words (Christ, Islam, capitalism, porn, zombies) show how schools of thought, religion and certain aspects of media can shape someone’s interpretations. Religious terms on social media platforms can bring conflict or stigma to a conversation, whereas for others, it can be a form of identity expression and comfort. “Capitalism” can signal opportunity or exploitation depending on an indiciduals political stance. Words popular within pop culture, like “zombies”, can be used for entertainment in a playful manner or refer to fear, disgust or in reference to someone’s overall attitude. Hence a difference between these categories can show how the happiness score can be dependent on contextual and community based meanings as much as the disctionary meaning of certain terms. 
+
+
