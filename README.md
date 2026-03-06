@@ -49,8 +49,7 @@ After running, look in:
 - `tables/` — CSV summary tables
 
 
-
-
+# Yimai-work Section 1
 ## Dataset
 We use the labMT 1.0 dataset (Dodds et al., 2011), which includes 10,222 English words rated for happiness.
 
@@ -76,3 +75,14 @@ We confirmed that:
 - Rank columns contain 5,222 missing values each, indicating words not present in the top 5000 most frequent words of the respective corpus.
 
 A cleaned dataset was saved as `data/labmt_clean.csv`.
+
+
+
+# Chaeyun-work Section 2
+### Figures
+We compare how “common language” differs across four corpora: Twitter, Google Books, the New York Times, and song lyrics. Each rank column in the labMT dataset contains exactly the top 5000 words for that corpus, so simply counting non-missing values yields 5000 words for each source. For this reason, meaningful differences between corpora are better understood by examining overlap rather than raw counts.
+
+We find that only 2,881 words appear in both the Twitter and NYT top-5000 lists, and just 1,816 words appear in all four corpora. This indicates that what counts as “common” language varies substantially depending on where the language is observed.
+
+As a concrete example, laughter appears in the Twitter top-5000 list but not in the NYT top-5000 list. This likely reflects differences in register and usage: Twitter language tends to include more informal and emotionally expressive vocabulary, whereas newspaper language favors a more formal style.
+Figure X illustrates these corpus overlaps and highlights the uneven distribution of shared vocabulary across sources.
