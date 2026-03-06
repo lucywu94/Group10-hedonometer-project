@@ -82,14 +82,17 @@ In our own analysis we treated the labMT file as a tab-delimited dataset. We ski
 ## Results
 ### 1. Distribution of Happiness Scores
 ![Distribution of Happiness Scores](figures/hist_happiness_average.png)
+
 The histogram shows the distribution of happiness scores across the labMT lexicon. Most words cluster around the middle of the scale, with many values between about 4 and 7. Extremely positive and extremely negative words are less common, indicating that most words in the lexicon express moderate emotional valence rather than strong positivity or negativity.
 
 ### 2. Happiness vs Disagreement
 ![Happiness vs Disagreement](figures/scatter_avg_vs_sd.png)
+
 The scatter plot compares the average happiness score of each word with the level of disagreement among raters (standard deviation). Words with mid-range happiness scores tend to show greater disagreement, suggesting that they are more context-dependent or culturally contested. In contrast, words with very high or very low happiness scores often have lower disagreement, indicating stronger consensus about their emotional meaning.
 
 ### 3. Corpus Comparison
 ![Corpus comparison](figures/bar_corpus_presence.png)
+
 We compare how “common language” differs across four corpora: Twitter, Google Books, the New York Times, and song lyrics. Each rank column in the labMT dataset contains exactly the top 5000 words for that corpus, so simply counting non-missing values yields 5000 words for each source. For this reason, meaningful differences between corpora are better understood by examining overlap rather than raw counts.
 
 We find that only 2,881 words appear in both the Twitter and NYT top-5000 lists, and just 1,816 words appear in all four corpora. This indicates that what counts as “common” language varies substantially depending on where the language is observed.
