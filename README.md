@@ -193,7 +193,7 @@ python3 src/03_word_exhibit.py
 
 
 ### Citation
-This project uses the labMT 1.0 dataset introduced in: 
+This project uses the labMT 1.0 dataset introduced in:  
 Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2011). Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter. PLOS ONE, 6(12), e26752.
 
 ### AI Disclosure
