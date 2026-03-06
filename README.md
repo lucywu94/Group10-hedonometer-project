@@ -19,42 +19,42 @@ Each word has:
 ### Columns
 Below is a description of each column in the dataset, including its meaning, data type, and notes on missing values.
 
-Word
+#### Word
   - Type: string  
   - Meaning: the English word being evaluated in the dataset.  
   - Missingness: no missing values.
 
-Happiness_rank
+#### Happiness_rank
   - Type: integer  
   - Meaning: the rank of the word based on its average happiness score (1 indicates the highest happiness score).  
   - Missingness: no missing values.
 
-Happiness_average
+#### Happiness_average
   - Type: float  
   - Meaning: the average happiness score assigned to the word by Mechanical Turk raters on a 1–9 scale.  
   - Missingness: no missing values.
 
-Happiness_standard_deviation
+#### Happiness_standard_deviation
   - Type: float  
   - Meaning: the standard deviation of happiness ratings, indicating the level of disagreement among raters.  
   - Missingness: no missing values.
 
-Twitter_rank
+#### Twitter_rank
   - Type: float  
   - Meaning: the frequency rank of the word in the Twitter corpus.  
   - Missingness: contains 5,222 missing values because only the top 5,000 most frequent words in the corpus are ranked.
 
-Google_rank 
+#### Google_rank 
   - Type: float  
   - Meaning: the frequency rank of the word in the Google Books corpus.  
   - Missingness: contains 5,222 missing values for words not appearing in the top 5,000.
 
-NYT_rank
+#### NYT_rank
   - Type: float  
   - Meaning: the frequency rank of the word in the New York Times corpus.  
   - Missingness: contains 5,222 missing values for words not appearing in the top 5,000.
 
-Lyrics_rank
+#### Lyrics_rank
   - Type: float  
   - Meaning: the frequency rank of the word in the song lyrics corpus.  
   - Missingness: contains 5,222 missing values for words not appearing in the top 5,000.
@@ -175,27 +175,27 @@ python3 src/03_word_exhibit.py
 ## Credits
 ### Team Roles
 1. Repo & workflow lead (Yiran Wu)
-– Creates the GitHub repo and folder structure.
-– Manages branches / merges (or coordinates who edits which files).
-– Ensures the README stays organized and readable.
-– Ensures the README reads smoothly and makes a clear argument.
+- Creates the GitHub repo and folder structure.
+- Manages branches / merges (or coordinates who edits which files).
+- Ensures the README stays organized and readable.
+- Ensures the README reads smoothly and makes a clear argument.
 
 2. Data wrangler (Yimai Liu)
-– Loads the dataset, handles missing values, converts data types.
-– Produces the data dictionary and “what each column means” section.
+- Loads the dataset, handles missing values, converts data types.
+- Produces the data dictionary and “what each column means” section.
 
 3. Quantitative analyst (Chaeyun Kim)
-– Leads descriptive statistics and at least 2 core plots.
-– Makes sure plots have labels and captions.
-– Checks results for sanity and reproducibility.
+- Leads descriptive statistics and at least 2 core plots.
+- Makes sure plots have labels and captions.
+- Checks results for sanity and reproducibility.
 
 4. Qualitative / close-reading lead (Duaa Khan)
-– Leads careful interpretation of selected words (examples, ambiguity, cultural meaning).
-– Connects qualitative observations back to patterns in the plots.
+- Leads careful interpretation of selected words (examples, ambiguity, cultural meaning).
+- Connects qualitative observations back to patterns in the plots.
 
 5. Provenance & critique lead (Maya Yonkova)
-– Reconstructs how the dataset was generated (pipeline).
-– Writes the “critical reflection” sections: consequences, bias, limitations, and what the dataset makes easy/hard to see.
+- Reconstructs how the dataset was generated (pipeline).
+- Writes the “critical reflection” sections: consequences, bias, limitations, and what the dataset makes easy/hard to see.
 
 
 ### Citation
