@@ -1,33 +1,16 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
 
-# load dataset (adjust filename if needed)
-df = pd.read_csv(
-    "data/raw/Data_Set_S1.txt",
-    sep="\t",
-    skiprows=3,
-    na_values="--"
-)
+# make sure output folders exist
+Path("figures").mkdir(exist_ok=True)
+Path("tables").mkdir(exist_ok=True)
+
+# load cleaned dataset from Section 1
+df = pd.read_csv("data/labmt_clean.csv")
 
 print("Shape:", df.shape)
 print(df.columns)
-
-# clean numeric columns
-numeric_cols = [
-    "happiness_average",
-    "happiness_standard_deviation",
-    "twitter_rank",
-    "google_books_rank",
-    "nyt_rank",
-    "lyrics_rank",
-]
-
-for col in numeric_cols:
-    if col in df.columns:
-        df[col] = pd.to_numeric(df[col].replace("--", pd.NA), errors="coerce")
-
-print(df.info())
-print(df.isna().sum().sort_values(ascending=False))
 
 # sanity checks
 print("Duplicate words:", df["word"].duplicated().sum())
@@ -77,7 +60,7 @@ rank_cols = {
 # 2.3-1) Count how many words appear in each corpus top 5000 (rank not missing)
 presence_counts = {}
 for corpus, col in rank_cols.items():
-    presence_counts[corpus] = df[col].notna().sum()
+    presence_counts[corpus] = (df[col].notna() & (df[col] <= 5000)).sum()
 
 counts_df = (
     pd.DataFrame({"corpus": list(presence_counts.keys()),
@@ -89,10 +72,10 @@ print("\n2.3 — Words present in top 5000 by corpus:")
 print(counts_df.to_string(index=False))
 
 # 2.3-2) Simple overlap counts (examples)
-twitter_present = df[rank_cols["Twitter"]].notna()
-google_present = df[rank_cols["Google Books"]].notna()
-nyt_present = df[rank_cols["NYT"]].notna()
-lyrics_present = df[rank_cols["Lyrics"]].notna()
+twitter_present = df[rank_cols["Twitter"]].notna() & (df[rank_cols["Twitter"]] <= 5000)
+google_present = df[rank_cols["Google Books"]].notna() & (df[rank_cols["Google Books"]] <= 5000)
+nyt_present = df[rank_cols["NYT"]].notna() & (df[rank_cols["NYT"]] <= 5000)
+lyrics_present = df[rank_cols["Lyrics"]].notna() & (df[rank_cols["Lyrics"]] <= 5000)
 
 overlap_twitter_nyt = (twitter_present & nyt_present).sum()
 overlap_all_four = (twitter_present & google_present & nyt_present & lyrics_present).sum()
