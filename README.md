@@ -81,21 +81,15 @@ In our own analysis we treated the labMT file as a tab-delimited dataset. We ski
 
 ## Results
 ### 1. Distribution of Happiness Scores
-```Markdown
 ![Distribution of Happiness Scores](figures/hist_happiness_average.png)
-```
 The histogram shows the distribution of happiness scores across the labMT lexicon. Most words cluster around the middle of the scale, with many values between about 4 and 7. Extremely positive and extremely negative words are less common, indicating that most words in the lexicon express moderate emotional valence rather than strong positivity or negativity.
 
 ### 2. Happiness vs Disagreement
-```Markdown
 ![Happiness vs Disagreement](figures/scatter_avg_vs_sd.png)
-```
 The scatter plot compares the average happiness score of each word with the level of disagreement among raters (standard deviation). Words with mid-range happiness scores tend to show greater disagreement, suggesting that they are more context-dependent or culturally contested. In contrast, words with very high or very low happiness scores often have lower disagreement, indicating stronger consensus about their emotional meaning.
 
 ### 3. Corpus Comparison
-```Markdown
 ![Corpus comparison](figures/bar_corpus_presence.png)
-```
 We compare how “common language” differs across four corpora: Twitter, Google Books, the New York Times, and song lyrics. Each rank column in the labMT dataset contains exactly the top 5000 words for that corpus, so simply counting non-missing values yields 5000 words for each source. For this reason, meaningful differences between corpora are better understood by examining overlap rather than raw counts.
 
 We find that only 2,881 words appear in both the Twitter and NYT top-5000 lists, and just 1,816 words appear in all four corpora. This indicates that what counts as “common” language varies substantially depending on where the language is observed.
@@ -174,35 +168,33 @@ python3 src/03_word_exhibit.py
 
 ## Credits
 ### Team Roles
-1. Repo & workflow lead (Yiran Wu)
+#### 1. Repo & workflow lead (Yiran Wu)
 - Creates the GitHub repo and folder structure.
 - Manages branches / merges (or coordinates who edits which files).
 - Ensures the README stays organized and readable.
 - Ensures the README reads smoothly and makes a clear argument.
 
-2. Data wrangler (Yimai Liu)
+#### 2. Data wrangler (Yimai Liu)
 - Loads the dataset, handles missing values, converts data types.
 - Produces the data dictionary and “what each column means” section.
 
-3. Quantitative analyst (Chaeyun Kim)
+#### 3. Quantitative analyst (Chaeyun Kim)
 - Leads descriptive statistics and at least 2 core plots.
 - Makes sure plots have labels and captions.
 - Checks results for sanity and reproducibility.
 
-4. Qualitative / close-reading lead (Duaa Khan)
+#### 4. Qualitative / close-reading lead (Duaa Khan)
 - Leads careful interpretation of selected words (examples, ambiguity, cultural meaning).
 - Connects qualitative observations back to patterns in the plots.
 
-5. Provenance & critique lead (Maya Yonkova)
+#### 5. Provenance & critique lead (Maya Yonkova)
 - Reconstructs how the dataset was generated (pipeline).
 - Writes the “critical reflection” sections: consequences, bias, limitations, and what the dataset makes easy/hard to see.
 
 
 ### Citation
-This project uses the labMT 1.0 dataset introduced in:
-Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2011).  
-*Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter.*  
-PLOS ONE.
+This project uses the labMT 1.0 dataset introduced in: 
+Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2011). Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter. PLOS ONE, 6(12), e26752.
 
 ### AI Disclosure
 - AI was used to clarify the assignment instructions and to help us understand the responsibilities of different roles.
