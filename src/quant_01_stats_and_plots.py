@@ -21,7 +21,7 @@ numeric_cols = [
     "nyt_rank",
     "lyrics_rank",
 ]
-
+# missing data
 for col in numeric_cols:
     if col in df.columns:
         df[col] = pd.to_numeric(df[col].replace("--", pd.NA), errors="coerce")
