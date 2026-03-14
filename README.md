@@ -51,6 +51,9 @@ After running, look in:
 
 
 
+
+
+
 ## Dataset
 We use the labMT 1.0 dataset (Dodds et al., 2011), which includes 10,222 English words rated for happiness.
 
@@ -76,3 +79,19 @@ We confirmed that:
 - Rank columns contain 5,222 missing values each, indicating words not present in the top 5000 most frequent words of the respective corpus.
 
 A cleaned dataset was saved as `data/labmt_clean.csv`.
+
+
+## Data Dictionary
+
+| Column | Type | Description | Missing Values |
+|--------|------|------------|---------------|
+| word | string | The English word being evaluated | 0 |
+| happiness_rank | integer | Rank of the word by average happiness score (1 = happiest) | 0 |
+| happiness_average | float | Mean happiness score (1–9 scale) assigned by Mechanical Turk raters | 0 |
+| happiness_standard_deviation | float | Standard deviation of happiness ratings (degree of disagreement) | 0 |
+| twitter_rank | float | Frequency rank of the word in Twitter (top 5000 words only) | 5222 |
+| google_rank | float | Frequency rank in Google Books corpus (top 5000 words only) | 5222 |
+| nyt_rank | float | Frequency rank in New York Times corpus (top 5000 words only) | 5222 |
+| lyrics_rank | float | Frequency rank in song lyrics corpus (top 5000 words only) | 5222 |
+
+The rank columns contain 5,222 missing values each. This indicates that only the top 5,000 most frequent words from each corpus were included. Words that do not appear in the top 5,000 for a given corpus are recorded as missing (NaN). These missing values therefore reflect corpus frequency thresholds rather than incomplete data collection.
