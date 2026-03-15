@@ -81,32 +81,36 @@ print(results_df)
 results_df.to_csv("tables/decade_happiness_summary.csv", index=False)
 print("Saved tables/decade_happiness_summary.csv")
 
-plt.figure(figsize=(8, 5))
+plt.figure(figsize=(8, 5), dpi=300)
 
 means = results_df["mean_happiness"]
-lower_errors = results_df["mean_happiness"] - results_df["ci_lower"]
-upper_errors = results_df["ci_upper"] - results_df["mean_happiness"]
+lower = results_df["ci_lower"]
+upper = results_df["ci_upper"]
 
-x = range(len(results_df))
+plt.bar(results_df["decade"], means)
 
 plt.errorbar(
-    x,
+    results_df["decade"],
     means,
-    yerr=[lower_errors, upper_errors],
-    fmt="o",
+    yerr=[means - lower, upper - means],
+    fmt="none",
     capsize=5
 )
 
-plt.xticks(x, results_df["decade"])
 
-
-ymin = results_df["ci_lower"].min() - 0.02
-ymax = results_df["ci_upper"].max() + 0.02
-plt.ylim(ymin, ymax)
+plt.ylim(lower.min() - 0.02, upper.max() + 0.02)
 
 
 for i, v in enumerate(means):
-    plt.text(i, v + 0.002, f"{v:.3f}", ha="center")
+    plt.text(
+        i,
+        v + 0.002,
+        f"{v:.3f}",
+        ha="center",
+        fontsize=12,
+        fontweight="bold",
+        bbox=dict(facecolor="white", edgecolor="none", alpha=0.8)
+    )
 
 plt.title("Average Happiness of NYT Headlines by Decade")
 plt.xlabel("Decade")
