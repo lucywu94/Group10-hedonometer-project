@@ -82,21 +82,36 @@ results_df.to_csv("tables/decade_happiness_summary.csv", index=False)
 print("Saved tables/decade_happiness_summary.csv")
 
 plt.figure(figsize=(8, 5))
+
 means = results_df["mean_happiness"]
 lower_errors = results_df["mean_happiness"] - results_df["ci_lower"]
 upper_errors = results_df["ci_upper"] - results_df["mean_happiness"]
 
-plt.bar(results_df["decade"], means)
+x = range(len(results_df))
+
 plt.errorbar(
-    results_df["decade"],
+    x,
     means,
     yerr=[lower_errors, upper_errors],
-    fmt="none",
+    fmt="o",
     capsize=5
 )
+
+plt.xticks(x, results_df["decade"])
+
+
+ymin = results_df["ci_lower"].min() - 0.02
+ymax = results_df["ci_upper"].max() + 0.02
+plt.ylim(ymin, ymax)
+
+
+for i, v in enumerate(means):
+    plt.text(i, v + 0.002, f"{v:.3f}", ha="center")
+
 plt.title("Average Happiness of NYT Headlines by Decade")
 plt.xlabel("Decade")
 plt.ylabel("Mean Happiness Score")
+
 plt.tight_layout()
 plt.savefig("figures/happiness_by_decade_ci.png", dpi=300)
 plt.close()
