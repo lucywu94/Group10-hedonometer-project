@@ -1,13 +1,14 @@
-# Hedonometer Project
-### Mini-Project 1: Exploring the labMT Lexicon
-In this mini-project, we analyses the labMT 1.0 dataset, a collection of English words rated for happiness by crowd workers. We use Python to clean the data and explore patterns in happiness scores and word usage across several text corpora. We then combine quantitative plots with qualitative interpretation to examine how emotional meaning in language depends on context and cultural perspective.
+# 📊Hedonometer Project📊
+This repository contains two mini-projects that explore how emotional tone in language can be measured using the labMT hedonometer. The first project examines the structure of the labMT lexicon itself, while the second project applies the lexicon to analyze the emotional tone of New York Times headlines across different years.
 
-### Mini-Project 2: Inferring Happiness in NYT Headlines
-In this mini-project, we use the labMT 1.0 hedonometer as a measurement instrument to analyze the emotional tone of New York Times headlines. Headlines are collected through the NYT Article Search API, and their happiness scores are computed by matching words with the labMT lexicon. We then compare the average happiness scores of headlines across the selected years to examine how their emotional tone changes over time.
+
 
 <br><br>
 
-# Mini-Project 1️⃣: Exploring the labMT Lexicon
+# Mini-Project 1️⃣: Exploring the labMT Lexicon  
+### Introduction
+In this mini-project, we analyses the labMT 1.0 dataset, a collection of English words rated for happiness by crowd workers. We use Python to clean the data and explore patterns in happiness scores and word usage across several text corpora. We then combine quantitative plots with qualitative interpretation to examine how emotional meaning in language depends on context and cultural perspective.
+
 ## Dataset
 ### Source
 We use the labMT 1.0 dataset (Dodds et al., 2011), which includes 10,222 English words rated for happiness.
@@ -113,37 +114,7 @@ Through the labMT dataset it's possible to analyze big texts of emotional langua
 
 
 
-## How To Run The Code
-### 1) Create A Virtual Environment
-**macOS / Linux**
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install --upgrade pip
-```
-
-**Windows (PowerShell)**
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-py -m pip install --upgrade pip
-```
-
-### 2) Install Dependencies
-```bash
-python3 -m pip install -r requirements.txt
-```
-
-### 3) Run The Analysis Scripts
-Run the scripts in the following order:
-```bash
-python3 src/01_load_clean.py
-python3 src/02_quant_analysis.py
-python3 src/03_word_exhibit.py
-```
-
-## Credits
-### Team Roles
+## Team Roles
 **Repo & workflow lead (Yiran Wu)**
 - Creates the GitHub repo and folder structure.
 - Manages branches / merges (or coordinates who edits which files).
@@ -168,21 +139,13 @@ python3 src/03_word_exhibit.py
 - Writes the “critical reflection” sections: consequences, bias, limitations, and what the dataset makes easy/hard to see.
 
 
-### Citation
-This project uses the labMT 1.0 dataset introduced in:  
-Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2011). Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter. PLOS ONE, 6(12), e26752.
 
 
-### AI Disclosure
-- AI was used to clarify the assignment instructions and to help us understand the responsibilities of different roles.
-- AI tools were used to help interpret terminal error messages and identify possible fixes.
-- AI tools were occasionally used to explain Git workflows.
-- AI helped us with drafting code and explanations, but we ensured we understood the meaning of each line after carefully reading and reviewing the scripts.
+<br><br>
 
-
-<br><br><br>
-
-# Mini-Project 2️⃣: Exploring the labMT Lexicon
+# Mini-Project 2️⃣: Inferring Happiness in NYT Headlines  
+### Introduction
+In this mini-project, we use the labMT 1.0 hedonometer as a measurement instrument to analyze the emotional tone of New York Times headlines. Headlines are collected through the NYT Article Search API, and their happiness scores are computed by matching words with the labMT lexicon. We then compare the average happiness scores of headlines across the selected years to examine how their emotional tone changes over time.
 
 ## Research Question
 How has the emotional tone of New York Times headlines changed over time?
@@ -229,8 +192,8 @@ This dataset contains the following variables:
 This dataset will be used in the next stage to design the sampling strategy, compute uncertainty measures, and produce statistical inference plots to compare the emotional tone of headlines across the selected years.
 
 
-## Credits
-### Team Roles
+
+## Team Roles
 **Repo & workflow lead (Yiran Wu)**
 - Manages branches/merges.
 - Keeps the README readable.
@@ -252,14 +215,53 @@ This dataset will be used in the next stage to design the sampling strategy, com
 **Visualisation lead (Maya Yonkova)**
 - Designs and implements optimal visualisations to back-up data-driven claims.
 
-### Citation
-This project uses data collected from the New York Times Article Search API.
+
+<br><br>
+
+# How To Run The Code
+**1) Create A Virtual Environment**  
+macOS / Linux
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --upgrade pip
+```
+Windows (PowerShell)
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+py -m pip install --upgrade pip
+```
+**2) Install Dependencies**
+```bash
+python3 -m pip install -r requirements.txt
+```
+**3) Run Mini-Project 1: Exploring the labMT Lexicon**  
+Run the scripts in the following order:
+```bash
+python3 src/01_load_clean.py
+python3 src/02_quant_analysis.py
+python3 src/03_word_exhibit.py
+```
+**4) Run Mini-Project 2: Inferring Happiness in NYT Headlines**  
+Run the scripts in the following order:
+```bash
+python3 src/01_load_clean.py
+python3 src/02_quant_analysis.py
+python3 src/03_word_exhibit.py
+```
+
+<br>
+
+# Citation
+Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2011). Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter. PLOS ONE, 6(12), e26752.  
 
 The New York Times. (n.d.). *Article Search API*. https://developer.nytimes.com/docs/articlesearch-product/1/overview.
 
-### AI Disclosure
+<br>
+
+# AI Disclosure
 - AI was used to clarify the assignment instructions and to help us understand the responsibilities of different roles.
 - AI tools were used to help interpret terminal error messages and identify possible fixes.
 - AI tools were occasionally used to explain Git workflows.
 - AI helped us with drafting code and explanations, but we ensured we understood the meaning of each line after carefully reading and reviewing the scripts.
-
