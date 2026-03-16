@@ -4,7 +4,7 @@ import requests
 
 API_KEY = "9NGpEaAxMGbhoVdWsOjb9GkwiDoARf2enjv10DkqzeSktg64"
 
-with open("data/raw/nyt_headlines_2020.csv", "w", newline="", encoding="utf-8") as file:
+with open("data/nyt_headlines_2020_all.csv", "w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
     writer.writerow(["headline", "pub_date"])
 

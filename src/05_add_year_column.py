@@ -1,6 +1,6 @@
 import csv
 
-input_file = "data/nyt_headlines_all.csv"
+input_file = "data/raw/nyt_headlines_all.csv"
 output_file = "data/nyt_headlines_labeled.csv"
 
 with open(input_file, "r", encoding="utf-8") as infile, open(output_file, "w", newline="", encoding="utf-8") as outfile:
