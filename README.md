@@ -206,7 +206,7 @@ D --> E[Average Score = Headline Happiness]
 
 C --> F[Count Matched Words]
 B --> G[Count Total Words]
-F --> H[Coverage Ratio = Matched words divided by Total words]
+F --> H[Coverage Ratio = Matched Words divided by Total Words]
 G --> H
 ```
 
