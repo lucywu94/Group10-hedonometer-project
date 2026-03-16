@@ -1,8 +1,12 @@
 # Hedonometer Project
-This project analyses the labMT 1.0 dataset, a collection of English words rated for happiness by crowd workers. We use Python to clean the data and explore patterns in happiness scores and word usage across several text corpora. We then combine quantitative plots with qualitative interpretation to examine how emotional meaning in language depends on context and cultural perspective.
+### Mini-Project 1: Exploring the labMT Lexicon
+In this mini-project, we analyses the labMT 1.0 dataset, a collection of English words rated for happiness by crowd workers. We use Python to clean the data and explore patterns in happiness scores and word usage across several text corpora. We then combine quantitative plots with qualitative interpretation to examine how emotional meaning in language depends on context and cultural perspective.
+
+### Mini-Project 2: Inferring Happiness in NYT Headlines
+In this mini-project, we use the labMT 1.0 hedonometer as a measurement instrument to analyze the emotional tone of New York Times headlines. Headlines are collected through the NYT Article Search API, and their happiness scores are computed by matching words with the labMT lexicon. We then compare the average happiness scores of headlines across the selected years to examine how their emotional tone changes over time.
 
 
-
+# Mini-Project 1️⃣: Exploring the labMT Lexicon
 ## Dataset
 ### Source
 We use the labMT 1.0 dataset (Dodds et al., 2011), which includes 10,222 English words rated for happiness.
@@ -16,48 +20,18 @@ Each word has:
   - New York Times
   - Lyrics
 
-### Columns
+### Data Dictionary
 Below is a description of each column in the dataset, including its meaning, data type, and notes on missing values.
-
-#### Word
-  - Type: string  
-  - Meaning: the English word being evaluated in the dataset.  
-  - Missingness: no missing values.
-
-#### Happiness_rank
-  - Type: integer  
-  - Meaning: the rank of the word based on its average happiness score (1 indicates the highest happiness score).  
-  - Missingness: no missing values.
-
-#### Happiness_average
-  - Type: float  
-  - Meaning: the average happiness score assigned to the word by Mechanical Turk raters on a 1–9 scale.  
-  - Missingness: no missing values.
-
-#### Happiness_standard_deviation
-  - Type: float  
-  - Meaning: the standard deviation of happiness ratings, indicating the level of disagreement among raters.  
-  - Missingness: no missing values.
-
-#### Twitter_rank
-  - Type: float  
-  - Meaning: the frequency rank of the word in the Twitter corpus.  
-  - Missingness: contains 5,222 missing values because only the top 5,000 most frequent words in the corpus are ranked.
-
-#### Google_rank 
-  - Type: float  
-  - Meaning: the frequency rank of the word in the Google Books corpus.  
-  - Missingness: contains 5,222 missing values for words not appearing in the top 5,000.
-
-#### NYT_rank
-  - Type: float  
-  - Meaning: the frequency rank of the word in the New York Times corpus.  
-  - Missingness: contains 5,222 missing values for words not appearing in the top 5,000.
-
-#### Lyrics_rank
-  - Type: float  
-  - Meaning: the frequency rank of the word in the song lyrics corpus.  
-  - Missingness: contains 5,222 missing values for words not appearing in the top 5,000.
+| Column | Type | Meaning | Missing Values |
+|------|------|------|------|
+| word | string | The English word being evaluated in the dataset | None |
+| happiness_rank | integer | Rank of the word based on its average happiness score (1 = highest happiness score) | None |
+| happiness_average | float | Average happiness score assigned by Mechanical Turk raters on a 1–9 scale | None |
+| happiness_standard_deviation | float | Standard deviation of happiness ratings, indicating disagreement among raters | None |
+| twitter_rank | float | Frequency rank of the word in the Twitter corpus | 5,222 missing values (words not in the top 5,000) |
+| google_rank | float | Frequency rank of the word in the Google Books corpus | 5,222 missing values (words not in the top 5,000) |
+| nyt_rank | float | Frequency rank of the word in the New York Times corpus | 5,222 missing values (words not in the top 5,000) |
+| lyrics_rank | float | Frequency rank of the word in the song lyrics corpus | 5,222 missing values (words not in the top 5,000) |
 
 
 
@@ -167,8 +141,6 @@ python3 src/02_quant_analysis.py
 python3 src/03_word_exhibit.py
 ```
 
-
-
 ## Credits
 ### Team Roles
 #### 1. Repo & workflow lead (Yiran Wu)
@@ -195,11 +167,27 @@ python3 src/03_word_exhibit.py
 - Writes the “critical reflection” sections: consequences, bias, limitations, and what the dataset makes easy/hard to see.
 
 
-<<<<<<< HEAD
+### Citation
+This project uses the labMT 1.0 dataset introduced in:  
+Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2011). Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter. PLOS ONE, 6(12), e26752.
 
 
+### AI Disclosure
+- AI was used to clarify the assignment instructions and to help us understand the responsibilities of different roles.
+- AI tools were used to help interpret terminal error messages and identify possible fixes.
+- AI tools were occasionally used to explain Git workflows.
+- AI helped us with drafting code and explanations, but we ensured we understood the meaning of each line after carefully reading and reviewing the scripts.
+
+
+
+
+# Mini-Project 2️⃣: Exploring the labMT Lexicon
+
+## Research Question
+Has the emotional tone of New York Times headlines changed over time?
 
 ## Dataset
+### Source
 We use the labMT 1.0 dataset (Dodds et al., 2011), which includes 10,222 English words rated for happiness.
 
 Each word has:
@@ -211,9 +199,7 @@ Each word has:
   - New York Times
   - Lyrics
 
-
-## Data Cleaning
-
+### Data Cleaning
 The dataset was loaded as a tab-delimited file using pandas. The first two metadata rows were skipped. Missing values marked as "--" were converted to NaN.
 
 The final dataset contains 10,222 rows and 8 columns.
@@ -225,9 +211,7 @@ We confirmed that:
 
 A cleaned dataset was saved as `data/labmt_clean.csv`.
 
-
-## Data Dictionary
-
+### Data Dictionary
 | Column | Type | Description | Missing Values |
 |--------|------|------------|---------------|
 | word | string | The English word being evaluated | 0 |
@@ -240,10 +224,73 @@ A cleaned dataset was saved as `data/labmt_clean.csv`.
 | lyrics_rank | float | Frequency rank in song lyrics corpus (top 5000 words only) | 5222 |
 
 The rank columns contain 5,222 missing values each. This indicates that only the top 5,000 most frequent words from each corpus were included. Words that do not appear in the top 5,000 for a given corpus are recorded as missing (NaN). These missing values therefore reflect corpus frequency thresholds rather than incomplete data collection.
-=======
+
+
+
+## Measurement
+In this part, we measure the emotional tone of New York Times headlines using the LabMT sentiment lexicon. Our dataset contains NYT headlines from three different years (2000, 2010, and 2020), which allows us to compare how the emotional tone of headlines may have changed over time.
+
+### Method
+The emotional tone of each headline is computed using the following pipeline:
+
+```mermaid
+flowchart TD
+A[NYT Headline] --> B[Tokenization]
+B --> C[Match with LabMT Lexicon]
+C --> D[Assign Happiness Scores]
+D --> E[Average Score = Headline Happiness]
+
+C --> F[Count Matched Words]
+B --> G[Count Total Words]
+F --> H[Coverage Ratio]
+G --> H
+```
+
+### Output
+The processed dataset is saved as `data/nyt_headlines_scored_v2.csv`.
+
+This dataset contains the following variables:
+| Column | Description |
+|------|------|
+| headline | NYT article headline |
+| pub_date | Original publication date |
+| year | Extracted year from the publication date |
+| happiness_score | Average labMT happiness score of matched words |
+| matched_words | Number of words in the headline found in the labMT lexicon |
+| total_words | Total number of words in the headline |
+| coverage_ratio | Proportion of words matched with the lexicon |
+
+
+This dataset will be used in the next stage to design the sampling strategy, compute uncertainty measures, and produce statistical inference plots to compare the emotional tone of headlines across the selected years.
+
+
+## Credits
+### Team Roles
+#### 1. Repo & workflow lead (Yiran Wu)
+- Manages branches/merges.
+- Keeps the README readable.
+- Enforces folder conventions.
+
+#### 2. Data acquisition lead (Chaeyun Kim)
+- Downloads via API or dataset source.
+- writes fetch script.
+- Documents provenance and ethics.
+
+#### 3. Measurement lead (Yimai Liu)
+- Implements and tests hedonometer scoring (tokenization, matching to labMT , handling OOV words).
+
+#### 4. Stats & sampling lead (Duaa Khan)
+- Designs sampling plan.
+- Computes uncertainty (CI/bootstraps).
+- Produces inference plots.
+
+#### 5. Visualisation lead (Maya Yonkova)
+- Designs and implements optimal visualisations to back-up data-driven claims.
+
 ### Citation
-This project uses the labMT 1.0 dataset introduced in:  
-Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2011). Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter. PLOS ONE, 6(12), e26752.
+This project uses data collected from the New York Times Article Search API.
+
+The New York Times. (n.d.). *Article Search API*. https://developer.nytimes.com/docs/articlesearch-product/1/overview.
 
 ### AI Disclosure
 - AI was used to clarify the assignment instructions and to help us understand the responsibilities of different roles.
