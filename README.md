@@ -239,7 +239,11 @@ This figure shows the average happiness score of New York Times headlines across
 
 ![Bootstrap 2020s](figures/bootstrap_distribution_2020s.png)
 
-These figures show the bootstrap distributions of the mean happiness score for New York Times headlines in the 2000s, 2010s, and 2020s. Bootstrapping resamples the data repeatedly to create an estimation for how stable the average happiness score is for each decade, and to estimate how much the mean happiness score could vary. The distributions are very similar, centered around similar values, and overlap a lot which suggests that the average happiness scores for the decades are very similar. The shapes also look quite symmetric, which means the estimated happiness scores are stable. Overall, the plots show that the emotional tone of New York times headlines doesn't change a lot between the three decades. 
+These figures show the bootstrap distributions of the mean happiness score for New York Times headlines in the 2000s, 2010s, and 2020s. Bootstrapping resamples the data repeatedly to create an estimation for how stable the average happiness score is for each decade, and to estimate how much the mean happiness score could vary. The symmetric shapes of these distributions indicate that the estimated happiness scores are stable and reliable.
+
+While the 2000s and 2020s distributions are positioned closely and show some overlap, the 2010s distribution is completely separate from the others. This lack of overlap with the 2010s suggests that the increase in happiness during that decade is a statistically significant shift rather than a random fluctuation.
+
+Overall, the plots confirm that the emotional tone of New York Times headlines remains relatively stable and close to the neutral middle. However, the clear separation of the 2010s distribution proves there was a small but measurable change in the journalistic tone during that period.
 
 ## Credits
 ### Team Roles
