@@ -253,7 +253,7 @@ G --> H
 ```
 
 ### Output
-The processed dataset is saved as `data/nyt_headlines_scored_v2.csv`.
+The processed dataset is saved as *`data/nyt_headlines_scored_v2.csv`*.
 
 This dataset contains the following variables:
 | Column | Description |
