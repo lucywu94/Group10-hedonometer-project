@@ -5,6 +5,7 @@ In this mini-project, we analyses the labMT 1.0 dataset, a collection of English
 ### Mini-Project 2: Inferring Happiness in NYT Headlines
 In this mini-project, we use the labMT 1.0 hedonometer as a measurement instrument to analyze the emotional tone of New York Times headlines. Headlines are collected through the NYT Article Search API, and their happiness scores are computed by matching words with the labMT lexicon. We then compare the average happiness scores of headlines across the selected years to examine how their emotional tone changes over time.
 
+<br><br>
 
 # Mini-Project 1️⃣: Exploring the labMT Lexicon
 ## Dataset
@@ -143,26 +144,26 @@ python3 src/03_word_exhibit.py
 
 ## Credits
 ### Team Roles
-#### 1. Repo & workflow lead (Yiran Wu)
+**Repo & workflow lead (Yiran Wu)**
 - Creates the GitHub repo and folder structure.
 - Manages branches / merges (or coordinates who edits which files).
 - Ensures the README stays organized and readable.
 - Ensures the README reads smoothly and makes a clear argument.
 
-#### 2. Data wrangler (Yimai Liu)
+**Data wrangler (Yimai Liu)**
 - Loads the dataset, handles missing values, converts data types.
 - Produces the data dictionary and “what each column means” section.
 
-#### 3. Quantitative analyst (Chaeyun Kim)
+**Quantitative analyst (Chaeyun Kim)**
 - Leads descriptive statistics and at least 2 core plots.
 - Makes sure plots have labels and captions.
 - Checks results for sanity and reproducibility.
 
-#### 4. Qualitative / close-reading lead (Duaa Khan)
+**Qualitative / close-reading lead (Duaa Khan)**
 - Leads careful interpretation of selected words (examples, ambiguity, cultural meaning).
 - Connects qualitative observations back to patterns in the plots.
 
-#### 5. Provenance & critique lead (Maya Yonkova)
+**Provenance & critique lead (Maya Yonkova)**
 - Reconstructs how the dataset was generated (pipeline).
 - Writes the “critical reflection” sections: consequences, bias, limitations, and what the dataset makes easy/hard to see.
 
@@ -179,7 +180,7 @@ Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2
 - AI helped us with drafting code and explanations, but we ensured we understood the meaning of each line after carefully reading and reviewing the scripts.
 
 
-
+<br><br><br>
 
 # Mini-Project 2️⃣: Exploring the labMT Lexicon
 
@@ -230,25 +231,25 @@ This dataset will be used in the next stage to design the sampling strategy, com
 
 ## Credits
 ### Team Roles
-#### 1. Repo & workflow lead (Yiran Wu)
+**Repo & workflow lead (Yiran Wu)**
 - Manages branches/merges.
 - Keeps the README readable.
 - Enforces folder conventions.
 
-#### 2. Data acquisition lead (Chaeyun Kim)
+**Data acquisition lead (Chaeyun Kim)**
 - Downloads via API or dataset source.
-- writes fetch script.
+- Writes fetch script.
 - Documents provenance and ethics.
 
-#### 3. Measurement lead (Yimai Liu)
+**Measurement lead (Yimai Liu)**
 - Implements and tests hedonometer scoring (tokenization, matching to labMT , handling OOV words).
 
-#### 4. Stats & sampling lead (Duaa Khan)
+**Stats & sampling lead (Duaa Khan)**
 - Designs sampling plan.
 - Computes uncertainty (CI/bootstraps).
 - Produces inference plots.
 
-#### 5. Visualisation lead (Maya Yonkova)
+**Visualisation lead (Maya Yonkova)**
 - Designs and implements optimal visualisations to back-up data-driven claims.
 
 ### Citation
