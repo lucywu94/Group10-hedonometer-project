@@ -48,7 +48,7 @@ We confirmed that:
 - All happiness-related variables are numeric.
 - Rank columns contain 5,222 missing values each, indicating words not present in the top 5000 most frequent words of the respective corpus.
 
-A cleaned dataset was saved as `data/labmt_clean.csv`.
+A cleaned dataset was saved as *`data/labmt_clean.csv`*.
 
 ### What We Did
 In our own analysis we treated the labMT file as a tab-delimited dataset. We skipped the initial metadata lines, we converted the placeholder value “--” into missing values, and we converted the rank and happiness columns into real numbers so that we could calculate averages and create plots. We didn’t remove neutral words from the middle of the happiness scale. We analyzed the full distribution of happiness_average. We treated each word as having one fixed happiness score and also looked at how much raters opinions about words differentiated by using standard deviation. The missing rank values were interpreted as “not in the top-5000 list for that corpus,” and we handled missing values differently depending on the task. These decisions affect the analysis of our results. We are describing patterns in the word list and how it appears across different text collections. We are not measuring the emotional tone of a specific text collection.
@@ -272,7 +272,6 @@ This dataset will be used in the next stage to design the sampling strategy, com
 
 
 ## Results
-**We then applied bootstrap resampling with 2,000 iterations to estimate the mean happiness score for each year and to calculate 95% confidence intervals.**
 
 ### Average Happiness by Year
 ![Average Happiness by Year](figures/happiness_by_decade_ci.png)
@@ -284,6 +283,7 @@ This figure shows the average happiness score of New York Times headlines for 20
 ![Bootstrap 2010](figures/bootstrap_distribution_2010s.png)
 
 ![Bootstrap 2020](figures/bootstrap_distribution_2020s.png)
+We applied bootstrap resampling with 2,000 iterations to estimate the mean happiness score for each year and to calculate 95% confidence intervals.
 
 These figures show the bootstrap distributions of the mean happiness score for New York Times headlines in 2000, 2010, and 2020. Bootstrapping resamples the data repeatedly to create an estimation for how stable the average happiness score is for each year, and to estimate how much the mean happiness score could vary. The symmetric shapes of these distributions indicate that the estimated happiness scores are stable and reliable.
 
@@ -313,7 +313,7 @@ The summary table presents the mean happiness score, confidence interval, and sa
 - Documents provenance and ethics.
 
 **Measurement lead (Yimai Liu)**
-- Implements and tests hedonometer scoring (tokenization, matching to labMT , handling OOV words).
+- Implements and tests hedonometer scoring (tokenization, matching to labMT, handling OOV words).
 
 **Stats & sampling lead (Duaa Khan)**
 - Designs sampling plan.
@@ -354,9 +354,12 @@ python3 src/03_word_exhibit.py
 **4) Run Mini-Project 2: Inferring Happiness in NYT Headlines**  
 Run the scripts in the following order:
 ```bash
-python3 src/01_load_clean.py
-python3 src/02_quant_analysis.py
-python3 src/03_word_exhibit.py
+python3 04_nyt_headline_collector.py
+python3 05_add_year_column.py
+python3 06_check_duplicates.py
+python3 07_check_data.py
+python3 08_compute_happiness.py
+python3 09_stats_sampling.py
 ```
 
 <br>
