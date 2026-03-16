@@ -231,7 +231,7 @@ This dataset will be used in the next stage to design the sampling strategy, com
 
 ![Average Happiness by Decade](figures/happiness_by_decade_ci.png)
 
-This figure shows the average happiness score of New York Times headlines across three decades: the 2000s, 2010s, and 2020s. The 2000s and 2020s have a lower average happiness score, while the 2010s have the highest average happiness score. The difference between the decades is relatively small, which shows that the emotional tone of New York Times headline has remained stable over time. 
+This figure shows the average happiness score of New York Times headlines across three decades: the 2000s, 2010s, and 2020s. The mean happiness score is 5.357 for the 2000s, 5.429 for the 2010s, and 5.367 for the 2020s. The 2000s and 2020s have a lower average happiness score, while the 2010s have the highest average happiness score. The largest difference is only about 0.07 points on the 1–9 hedonometer scale. The difference between the decades is relatively small, which shows that the emotional tone of New York Times headline has remained stable over time, and stays close to the neutral middle of the scale.
 
 ![Bootstrap 2000s](figures/bootstrap_distribution_2000s.png)
 
@@ -239,7 +239,7 @@ This figure shows the average happiness score of New York Times headlines across
 
 ![Bootstrap 2020s](figures/bootstrap_distribution_2020s.png)
 
-These figures show the bootstrap distributions of the mean happiness score for New York Times headlines in the 2000s, 2010s, and 2020s. Bootstrapping resamples the data repeatedly to create an estimation for how stable the average happiness score is for each decade. The distributions are very similar and overlap a lot which suggests that the average happiness scores for the decades are very similar. 
+These figures show the bootstrap distributions of the mean happiness score for New York Times headlines in the 2000s, 2010s, and 2020s. Bootstrapping resamples the data repeatedly to create an estimation for how stable the average happiness score is for each decade, and to estimate how much the mean happiness score could vary. The distributions are very similar, centered around similar values, and overlap a lot which suggests that the average happiness scores for the decades are very similar. The shapes also look quite symmetric, which means the estimated happiness scores are stable. Overall, the plots show that the emotional tone of New York times headlines doesn't change a lot between the three decades. 
 
 ## Credits
 ### Team Roles
