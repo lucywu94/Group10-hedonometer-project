@@ -184,7 +184,7 @@ Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2
 # Mini-Project 2️⃣: Exploring the labMT Lexicon
 
 ## Research Question
-Has the emotional tone of New York Times headlines changed over time?
+How has the emotional tone of New York Times headlines changed over time?
 
 ## Dataset
 
