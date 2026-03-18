@@ -1,6 +1,6 @@
 # Data Acquisition and Dataset Preparation
 
-Our research question for this project is: *How did the emotional tone of New York Times headlines change before, during, and after the 2008 financial crisis?* To address this question, we constructed a dataset of New York Times headlines that could later be analyzed using the Hedonometer (labMT) word list. My role in the project focused on data acquisition and dataset preparation, which included collecting headline data from the New York Times API, organizing the files, and preparing a cleaned and labeled dataset for analysis.
+Our research question for this project is: *How did the emotional tone of New York Times headlines change before, during, and after the 2008 financial crisis?* To address this question, we constructed a dataset of New York Times headlines that could later be analyzed using the Hedonometer (labMT) word list. 
 
 ## Data Source
 
