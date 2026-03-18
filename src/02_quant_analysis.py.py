@@ -12,6 +12,26 @@ df = pd.read_csv("data/labmt_clean.csv")
 print("Shape:", df.shape)
 print(df.columns)
 
+<<<<<<< HEAD:src/quant_01_stats_and_plots.py
+# clean numeric columns
+numeric_cols = [
+    "happiness_average",
+    "happiness_standard_deviation",
+    "twitter_rank",
+    "google_books_rank",
+    "nyt_rank",
+    "lyrics_rank",
+]
+# missing data
+for col in numeric_cols:
+    if col in df.columns:
+        df[col] = pd.to_numeric(df[col].replace("--", pd.NA), errors="coerce")
+
+print(df.info())
+print(df.isna().sum().sort_values(ascending=False))
+
+=======
+>>>>>>> origin/main:src/02_quant_analysis.py.py
 # sanity checks
 print("Duplicate words:", df["word"].duplicated().sum())
 print(df.sample(15, random_state=0))
