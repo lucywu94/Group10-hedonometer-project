@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 # 1. load datasets
-nyt = pd.read_csv("data/nyt_headlines_labeled.csv")
+nyt = pd.read_csv("data/nyt_economic_crisis/nyt_all_periods_clean.csv")
 labmt = pd.read_csv("data/labmt_clean.csv")
 
 print("Data loaded.")
@@ -19,10 +19,8 @@ def tokenize(text):
     text = str(text).lower()
     return re.findall(r"[a-z]+", text)
 
-
 # 4. compute happiness score
 def compute_happiness(text):
-
     tokens = tokenize(text)
 
     scores = []
@@ -30,11 +28,11 @@ def compute_happiness(text):
         if word in word_scores:
             scores.append(word_scores[word])
 
+    # OOV words are excluded
     if len(scores) == 0:
         return None
 
-    return round(sum(scores) / len(scores),2)
-
+    return round(sum(scores) / len(scores), 2)
 
 # 5. apply to dataset
 nyt["happiness_score"] = nyt["headline"].apply(compute_happiness)
@@ -48,29 +46,37 @@ def count_matches(text):
 
 nyt["matched_words"] = nyt["headline"].apply(count_matches)
 
+# 7. count total words
 def count_total_words(text):
     return len(tokenize(text))
 
 nyt["total_words"] = nyt["headline"].apply(count_total_words)
+
+# 8. compute coverage ratio
 nyt["coverage_ratio"] = (nyt["matched_words"] / nyt["total_words"]).round(1)
-print("\nCurrent columns before saving:")
+
+# 9. save result
+nyt.to_csv("data/nyt_economic_crisis/nyt_all_periods_scored.csv", index=False)
+print("Saved file: data/nyt_economic_crisis/nyt_all_periods_scored.csv")
+
+# 10. preview
+print("\nPreview:")
+print(
+    nyt[
+        [
+            "period",
+            "year",
+            "headline",
+            "happiness_score",
+            "matched_words",
+            "total_words",
+            "coverage_ratio",
+        ]
+    ].head()
+)
+
+print("\nAverage happiness by period:")
+print(nyt.groupby("period")["happiness_score"].mean())
+
+print("\nCurrent columns:")
 print(nyt.columns.tolist())
-
-
-# 7. save result
-nyt.to_csv("data/nyt_headlines_scored_v2.csv", index=False)
-
-print("Saved file: data/nyt_headlines_scored_v2.csv")
-
-# preview
-print(nyt[["headline", "year", "happiness_score", "matched_words"]].head())
-
-print("\nAverage happiness by year:")
-print(nyt.groupby("year")["happiness_score"].mean())
-
-
-print("\nCOLUMNS:")
-print(nyt.columns.tolist())
-
-print("\nHEAD PREVIEW:")
-print(nyt[["headline", "year", "happiness_score", "matched_words", "total_words", "coverage_ratio"]].head())
