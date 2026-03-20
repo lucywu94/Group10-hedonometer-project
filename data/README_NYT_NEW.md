@@ -8,6 +8,8 @@ The headline data was collected from the New York Times Archive API. The Archive
 
 Once the API connection was verified, data collection was automated using a Python script (`nyt_headlines.py`). This script uses the `requests` library to retrieve monthly archive data and extract the relevant fields from the returned JSON structure. For each article, the script extracts the main headline (`headline.main`) and the publication date (`pub_date`). The extracted data is then written to CSV files for further processing.
 
+To run this script, you must obtain your own New York Times API key from the NYT Developer Portal and replace "YOUR_API_KEY" in the script. The script uses the NYT Archive API to retrieve article data. For security reasons, API keys are not included in this repository.
+
 ## Data Collection Process
 
 The data collection process was carried out month-by-month across three defined periods surrounding the 2008 financial crisis. The crisis period was defined as September 2008 to June 2009, corresponding to the period following the collapse of Lehman Brothers. To enable a balanced comparison, two 24-month windows were defined before and after the crisis period.
@@ -25,6 +27,8 @@ For each month within these periods, all available headlines were retrieved via 
 Because the NYT API imposes rate limits, requests were spaced using time delays, and retry logic was implemented to handle temporary quota violations. When a rate limit error occurred, the script paused and retried the same request to ensure that no monthly data was skipped. The collection process was first tested on a small subset of months to ensure that API calls, parsing, and file writing were functioning correctly before running the full data acquisition.
 
 ## Dataset Construction
+
+All datasets included in this repository are processed data rather than raw data. The original data was obtained from the New York Times Archive API in structured JSON format, but during collection, the data was transformed by selecting relevant fields, applying random sampling, and assigning period labels. As a result, the repository does not contain raw API outputs, but instead provides structured datasets prepared for analysis.
 
 The collected data for each period was initially stored in separate CSV files (`nyt_before.csv`, `nyt_during.csv`, and `nyt_after.csv`). These files were then combined into a single dataset (`nyt_all_periods.csv`) containing all sampled headlines across the three periods.
 
