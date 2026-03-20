@@ -1,12 +1,9 @@
 import pandas as pd
 
-df = pd.read_csv("Group10-hedonometer-project/data/nyt_all_periods.csv")
+before = pd.read_csv("Group10-hedonometer-project/data/nyt_before.csv")
+during = pd.read_csv("Group10-hedonometer-project/data/nyt_during.csv")
+after = pd.read_csv("Group10-hedonometer-project/data/nyt_after.csv")
 
-# check number of duplicates
-print("Duplicates:", df.duplicated(subset=["headline", "pub_date"]).sum())
+df = pd.concat([before, during, after], ignore_index=True)
 
-# delete duplicates
-df_clean = df.drop_duplicates(subset=["headline", "pub_date"])
-
-# save
-df_clean.to_csv("Group10-hedonometer-project/data/nyt_all_periods_clean.csv", index=False)
+df.to_csv("Group10-hedonometer-project/data/nyt_all_periods.csv", index=False)
