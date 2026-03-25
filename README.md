@@ -376,3 +376,58 @@ The New York Times. (n.d.). *Article Search API*. https://developer.nytimes.com/
 - AI tools were used to help interpret terminal error messages and identify possible fixes.
 - AI tools were occasionally used to explain Git workflows.
 - AI helped us with drafting code and explanations, but we ensured we understood the meaning of each line after carefully reading and reviewing the scripts.
+
+
+
+### Final Project
+## Measurement
+This project measures the overall emotional tone of New York Times headlines across 2008 financial crisis. We implement a hedonometer-based approach using the labMT lexicon to assign a happiness score to each headline.
+
+### Method
+[flow chart]
+
+### Coverage Ratio
+To evaluate how much of each headline is represented in the lexicon, we compute a coverage ratio:
+
+coverage ratio = matched words / total words
+
+This metric indicates the proportion of words that contribute to the happiness score.
+
+### Output
+
+The processed dataset is saved as *data/nyt_economic_crisis/nyt_all_periods_scored.csv*.
+
+This dataset contains the following variables:
+
+| Column | Description |
+|--------|------------|
+| period | Time period relative to the 2008 economic crisis (before / during / after) |
+| year | Extracted year from the publication date |
+| month | Extracted month from the publication date |
+| headline | NYT article headline |
+| pub_date | Original publication date |
+| happiness_score | Average labMT happiness score of matched words in the headline |
+| matched_words | Number of words in the headline found in the labMT lexicon |
+| total_words | Total number of words in the headline |
+| coverage_ratio | Proportion of words matched with the lexicon (matched_words / total_words) |
+
+### Notes on Measurement
+
+- The **happiness_score** is computed only from words that exist in the labMT lexicon.  
+- Words not found in the lexicon (out-of-vocabulary, OOV) are excluded from the calculation.  
+- If a headline contains no matched words, its happiness score is recorded as missing (`None`).  
+
+The **coverage_ratio** serves as a diagnostic indicator of how representative the computed sentiment is:
+- Higher coverage suggests more reliable sentiment estimation  
+- Lower coverage indicates that many words are not captured by the lexicon  
+
+
+### Usage
+
+This dataset will be used in the next stage of the project to:
+
+- Compare emotional tone across crisis periods   
+- Design sampling strategies  
+- Compute uncertainty measures (e.g., confidence intervals, bootstrapping)  
+- Produce statistical inference plots  
+
