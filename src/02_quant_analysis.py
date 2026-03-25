@@ -81,29 +81,42 @@ plt.close()
 # 2.2 Scatterplot (Happiness vs Disagreement)
 # -------------------------
 plt.figure()
+
+# Plot all words in the dataset
 plt.scatter(
     df["happiness_average"],
     df["happiness_standard_deviation"],
     s=10,
-    alpha=0.5
+    alpha=0.3
 )
 
 plt.title("Happiness Average vs Disagreement")
 plt.xlabel("Happiness average")
 plt.ylabel("Happiness standard deviation")
 
-# choose words to label
+# Select words to highlight and label
 most_negative = df.loc[df["happiness_average"].idxmin()]
 most_positive = df.loc[df["happiness_average"].idxmax()]
 highest_disagreement = df.loc[df["happiness_standard_deviation"].idxmax()]
 
-# one extra high-disagreement outlier
+# Select one additional high-disagreement outlier
 extra_outlier = df.sort_values(
     "happiness_standard_deviation", ascending=False
 ).iloc[1]
 
 to_label = [most_negative, most_positive, highest_disagreement, extra_outlier]
 
+# Highlight selected words in red
+highlight_df = pd.DataFrame(to_label)
+plt.scatter(
+    highlight_df["happiness_average"],
+    highlight_df["happiness_standard_deviation"],
+    s=10,
+    color="red",
+    zorder=3
+)
+
+# Add text labels for the selected words
 for row in to_label:
     x = row["happiness_average"]
     y = row["happiness_standard_deviation"]
