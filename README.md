@@ -105,7 +105,7 @@ The presence of such outliers highlights that disagreement is not driven solely 
 The plot suggests that emotional intensity and contextual variability are closely linked: as words become more emotionally charged or context-dependent, agreement between raters decreases. This demonstrates that affective meaning in language is not fixed, but shaped by interpretation and usage.
 
 ### 3. Corpus Comparison
-![Corpus comparison](figures/bar_corpus_presence.png)
+![Corpus comparison](figures/heatmap_corpus_overlap.png)
 
 To better understand how “common language” varies across contexts, we compare the overlap between the top 5000 words in four corpora: Twitter, Google Books, the New York Times (NYT), and song lyrics. Because each corpus is constructed from its own top-5000 list, raw counts are not informative; instead, we examine how many words overlap between corpora.
 
