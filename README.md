@@ -83,8 +83,6 @@ In our own analysis we treated the labMT file as a tab-delimited dataset. We ski
 ### 1. Distribution of Happiness Scores
 ![Distribution of Happiness Scores](figures/hist_happiness_average.png)
 
-2.1 Distribution of happiness scores
-
 To understand the overall structure of the dataset, we examine the distribution of happiness scores using both summary statistics and a histogram. The mean happiness score is approximately 5.38, and the median is very close to this value, indicating that the distribution is centered around the middle of the scale. The standard deviation is about 1.08, suggesting a moderate spread in the data.
 
 The range of values extends from approximately 1.3 to 8.5, showing that the lexicon includes both very negative and very positive words. However, the 5th and 95th percentiles (around 3.18 and 7.08) indicate that most words fall within a narrower central interval, with relatively few extreme values.
@@ -108,8 +106,6 @@ The plot suggests that emotional intensity and contextual variability are closel
 
 ### 3. Corpus Comparison
 ![Corpus comparison](figures/bar_corpus_presence.png)
-
-2.3 Corpus comparison
 
 To better understand how “common language” varies across contexts, we compare the overlap between the top 5000 words in four corpora: Twitter, Google Books, the New York Times (NYT), and song lyrics. Because each corpus is constructed from its own top-5000 list, raw counts are not informative; instead, we examine how many words overlap between corpora.
 
