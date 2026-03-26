@@ -223,3 +223,103 @@ The bootstrap distribution plots show the results of repeatedly resampling the d
 
 The summary table presents the mean happiness score, confidence interval, and sample size for each decade. To ensure a fair comparison, an equal sample size of 55,417 headlines was used for each decade.
 
+<<<<<<< Updated upstream
+=======
+
+## Team Roles
+**Repo & workflow lead (Yiran Wu)**
+- Manages branches/merges.
+- Keeps the README readable.
+- Enforces folder conventions.
+
+**Data acquisition lead (Chaeyun Kim)**
+- Downloads via API or dataset source.
+- Writes fetch script.
+- Documents provenance and ethics.
+
+**Measurement lead (Yimai Liu)**
+- Implements and tests hedonometer scoring (tokenization, matching to labMT, handling OOV words).
+
+**Stats & sampling lead (Duaa Khan)**
+- Designs sampling plan.
+- Computes uncertainty (CI/bootstraps).
+- Produces inference plots.
+
+**Visualisation lead (Maya Yonkova)**
+- Designs and implements optimal visualisations to back-up data-driven claims.
+
+
+<br><br>
+
+# How To Run The Code
+**1) Create A Virtual Environment**  
+macOS / Linux
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install --upgrade pip
+```
+Windows (PowerShell)
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+py -m pip install --upgrade pip
+```
+**2) Install Dependencies**
+```bash
+python3 -m pip install -r requirements.txt
+```
+**3) Run Mini-Project 1: Exploring the labMT Lexicon**  
+Run the scripts in the following order:
+```bash
+python3 src/01_load_clean.py
+python3 src/02_quant_analysis.py
+python3 src/03_word_exhibit.py
+```
+**4) Run Mini-Project 2: Inferring Happiness in NYT Headlines**  
+Run the scripts in the following order:
+```bash
+python3 04_nyt_headline_collector.py
+python3 05_add_year_column.py
+python3 06_check_duplicates.py
+python3 07_check_data.py
+python3 08_compute_happiness.py
+python3 09_stats_sampling.py
+```
+
+<br>
+
+# Citation
+Dodds, P. S., Harris, K. D., Kloumann, I. M., Bliss, C. A., & Danforth, C. M. (2011). Temporal patterns of happiness and information in a global social network: Hedonometrics and Twitter. PLOS ONE, 6(12), e26752.  
+
+The New York Times. (n.d.). *Article Search API*. https://developer.nytimes.com/docs/articlesearch-product/1/overview.
+
+<br>
+
+# AI Disclosure
+- AI was used to clarify the assignment instructions and to help us understand the responsibilities of different roles.
+- AI tools were used to help interpret terminal error messages and identify possible fixes.
+- AI tools were occasionally used to explain Git workflows.
+- AI helped us with drafting code and explanations, but we ensured we understood the meaning of each line after carefully reading and reviewing the scripts.
+
+
+project 2 sampling and method - 
+For this project we used a monthly stratified sampling method, we selected up to 500 headlines for each month from September 2006 till June 2011. We did this to ensure that each time period was represented equally and also that it avoided bias from the months that had more headlines than the others.
+
+We chose to measure the emotional tone by using the average happiness score of the headlines based off the labMT lexicon. The Words not found in the lexicon were not included from our calculation.
+
+to analyse change/trend overtime, we used the Pearson correlation between time (monthly index) and average monthly happiness. To account for our sampling variability, we applied bootstrap resampling (1000 iterations) to estimate the confidence interval.
+
+We also chose to group the data we collected into three periods (before, during, after) and used bootstrapping to estimate the differences in the mean happiness between these 3 periods.
+
+
+
+project 1 new analysis -
+This twenty word table we have created shows that the LabMT happiness score collects culturally situated judgments rather than fixed emotional meanings. The words that scored with the highest happiness scores (e.g., laughter = 8.50, happiness = 8.44, love = 8.42) are strongly associated with joy, affection, social bonding, and are consistently interpreted as something positive. The very negative words on the other hand (e.g., terrorist = 1.30, suicide = 1.30, rape = 1.44) have a very low score because they are connected to themes such as death, harm and violence, and are understood to be very negative regardless of what the context usually is. 
+
+The “highly contested” words (e.g., fucking SD = 2.93, fuckin SD = 2.74, fucked SD = 2.71) show how disagreement can occur when the words used are too taboo, context dependent or slang, since slang can be used refering to sexual, humourous or insult, which leads to variation in how they are interpreted. For example, whiskey (mean = 5.72, SD = 2.64) may be associated with celebration and social bonding for some, but when it comes to religion (mostly prohibition) addiction or harm to others, can explain its high level of disagreement.
+
+And lastly, the weird/culturally loaded words (e.g., Christ mean = 6.16, SD = 2.3; capitalism mean = 5.16, SD = 2.45; Islam mean = 4.68, SD = 2.33; porn mean = 4.18, SD = 2.43; Zombies mean = 4 SD = 2.37) show how schools of thought, religion and certain aspects of media may shape someone’s interpretations. Religious words and conversations on social media platforms usually bring conflict or stigma to a conversation more than a positive shared experience, whereas for other words, it may be a form of identity or comfort. The word “Capitalism” may be signal opportunity or exploitation depending on an individuals political stance, since its in the mid mean range it could mean that a mix of individuals with different political stances about capitalism. Lastly words that are popular within pop culture, like “zombies”, can be used for either entertainment in a playful manner, to express fear for them, disgust or refering to someone as a "zombie" based on their attitude or behaviour. Hence a difference between these categories can show how the happiness score can be dependent on contextual and community based meanings as much as the disctionary meaning of certain terms. 
+
+Overall the patterns we noticed show that higher disagreement (standard deviation) is linked to words with more ambiguity and context, whereas words that are universally understood tend to either have both extreme scores and/or lower variability. Suggesting that the emotional meaning of words within the dataset is shaped by the words but also by the perspectives of the people who used/ranked them. Since the ratings that were collected and we are using are from Mechanical Turk workers, so the dataset most likely reflects the cultural and ideological biases of the specific group of raters rather than a universal measure of these words.
+>>>>>>> Stashed changes
