@@ -229,21 +229,25 @@ This dataset will be used in the next stage to design the sampling strategy, com
 
 ## Visualisation and Results
 
-![Average Happiness by Decade](figures/happiness_by_decade_ci.png)
+![Average Happiness by Crisis Period](figures/happiness_by_period_ci.png)
 
-This figure shows the average happiness score of New York Times headlines across three decades: the 2000s, 2010s, and 2020s. The mean happiness score is 5.357 for the 2000s, 5.429 for the 2010s, and 5.367 for the 2020s. The 2000s and 2020s have a lower average happiness score, while the 2010s have the highest average happiness score. The largest difference is only about 0.07 points on the 1–9 hedonometer scale. The difference between the decades is relatively small, which shows that the emotional tone of New York Times headline has remained stable over time, and stays close to the neutral middle of the scale.
+This figure shows the average happiness score of New York Times headlines across three periods of the financial crisis: before, during, and after. There is a slight increase in the mean happiness score from 5.393 (before) to 5.415 (during) and 5.423 (after). Even though there is a slight increase, the differences between the periods are very small. This suggests that the emotional tone of NYT headlines stayed close to the neutral midpoint of the scale and stayed relatively stable.
 
-![Bootstrap 2000s](figures/bootstrap_distribution_2000s.png)
+![Monthly Happiness Trend](figures/monthly_happiness_trend.png)
 
-![Bootstrap 2010s](figures/bootstrap_distribution_2010s.png)
+This figure shows  the average happiness score of New York Times headlines over time across months from 2006 to 2011. The vertical dashed lines mark the beginning and end of the financial crisis period. There is a slight fluctuation from month to month, but overall they remain relatively stable and stay close to the neutral midpoint of the scale. There is no noticeable change in happiness during the crisis which suggests that the emotional tone of the headlines did not shift drastically over time. 
 
-![Bootstrap 2020s](figures/bootstrap_distribution_2020s.png)
+![Bootstrap Difference Before vs During](figures/bootstrap_diff_before_during.png)
 
-These figures show the bootstrap distributions of the mean happiness score for New York Times headlines in the 2000s, 2010s, and 2020s. Bootstrapping resamples the data repeatedly to create an estimation for how stable the average happiness score is for each decade, and to estimate how much the mean happiness score could vary. The symmetric shapes of these distributions indicate that the estimated happiness scores are stable and reliable.
+This figure shows the bootstrap distribution of the difference in average happiness scores between the period before and during the financial crisis. The distribution shows that there is a small difference in emotional tone between two periods because it is centered very close to zero. This suggests that the crisis did not lead to a noticeable change in the average happiness of New York Times headlines.
 
-While the 2000s and 2020s distributions are positioned closely and show some overlap, the 2010s distribution is completely separate from the others. This lack of overlap with the 2010s suggests that the increase in happiness during that decade is a statistically significant shift rather than a random fluctuation.
+![Bootstrap Difference Before vs After](figures/bootstrap_diff_before_after.png)
 
-Overall, the plots confirm that the emotional tone of New York Times headlines remains relatively stable and close to the neutral middle. However, the clear separation of the 2010s distribution proves there was a small but measurable change in the journalistic tone during that period.
+This figure shows the bootstrap distribution of the difference in average happiness scores between the period before and after the financial crisis. There is an indication of a small increase in happiness after the crisis as the distribution is slightly above zero. However, the difference is still very small. This suggests that the overall emotional tone of New York Times headlines remained largely stable.
+
+![Bootstrap Difference During vs After](figures/bootstrap_diff_during_after.png)
+
+This figures hows the bootstrap distribution of the difference in average happiness scores between the period during and after the financial crisis. The distribution is slightly above zero which indicates a small increase in happiness after the crisis. However, the difference is very small. This suggests that the emotional tone of New York Times headlines did not change drastically between these two periods.
 
 ## Credits
 ### Team Roles
