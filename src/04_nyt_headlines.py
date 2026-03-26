@@ -3,7 +3,9 @@ import random
 import time
 import csv
 
-API_KEY = "By2bafdhKiAcA0RTDtESL7Wbt4r0J8Tca0wxdQPCy9Ln34Sg"
+API_KEY = ("Your_API_Key")
+
+random.seed(42)
 
 def fetch_month(year, month):
     url = f"https://api.nytimes.com/svc/archive/v1/{year}/{month}.json"
@@ -11,10 +13,10 @@ def fetch_month(year, month):
 
     response = requests.get(url, params=params, timeout=30)
 
-    if response.status_code == 429: # if there is an error (rate limit quota violation)
+    if response.status_code == 429:
         print(f"Rate limit hit at {year}-{month:02d}, sleeping...")
-        time.sleep(60)  # rest for 60 secs
-        return fetch_month(year, month)  # try the same month again
+        time.sleep(60)
+        return fetch_month(year, month)
 
     data = response.json()
 
@@ -27,38 +29,30 @@ def fetch_month(year, month):
 
 def sample_headlines(docs, sample_size=500):
     headlines = []
-    
+
     for doc in docs:
         headline = doc.get("headline", {}).get("main")
         pub_date = doc.get("pub_date")
-        
+
         if headline:
             headlines.append((headline, pub_date))
-    
-    # random sampling
+
     if len(headlines) > sample_size:
         headlines = random.sample(headlines, sample_size)
-    
+
     return headlines
 
 
-# period
-periods = [
-    ("After", 2009, 7, 2011, 6)
-]
+def collect_period(period_name, start_y, start_m, end_y, end_m, output_file):
+    with open(output_file, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["period", "year", "month", "headline", "pub_date"])
 
-
-# save CSV
-with open("Group10-hedonometer-project/data/nyt_after.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.writer(f)
-    writer.writerow(["period", "year", "month", "headline", "pub_date"])
-
-    for period_name, start_y, start_m, end_y, end_m in periods:
         year = start_y
         month = start_m
 
         while (year < end_y) or (year == end_y and month <= end_m):
-            print(f"Fetching {year}-{month:02d}...")
+            print(f"Fetching {period_name}: {year}-{month:02d}...")
 
             docs = fetch_month(year, month)
             sampled = sample_headlines(docs, 500)
@@ -66,12 +60,27 @@ with open("Group10-hedonometer-project/data/nyt_after.csv", "w", newline="", enc
             for headline, pub_date in sampled:
                 writer.writerow([period_name, year, month, headline, pub_date])
 
-            # next month
             month += 1
             if month > 12:
                 month = 1
                 year += 1
 
-            time.sleep(10)  
+            time.sleep(10)
+
+
+collect_period(
+    "Before", 2006, 9, 2008, 8,
+    "Group10-hedonometer-project/data/nyt_before.csv"
+)
+
+collect_period(
+    "During", 2008, 9, 2009, 6,
+    "Group10-hedonometer-project/data/nyt_during.csv"
+)
+
+collect_period(
+    "After", 2009, 7, 2011, 6,
+    "Group10-hedonometer-project/data/nyt_after.csv"
+)
 
 print("DONE")
