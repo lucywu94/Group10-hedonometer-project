@@ -218,7 +218,7 @@ G --> H
 ```
 
 ### Coverage Ratio
-To evaluate how much of each headline is represented in the lexicon, we compute a coverage ratio: overage ratio = matched words / total words. This metric indicates the proportion of words that contribute to the happiness score.
+To evaluate how much of each headline is represented in the lexicon, we compute a coverage ratio: Coverage ratio = matched words / total words. This metric indicates the proportion of words that contribute to the happiness score.
 
 ### Output
 The processed dataset is saved as *data/processed/nyt_all_periods_scored.csv*.
@@ -305,7 +305,7 @@ In addition, the reliance on word-level scores means that subtleties such as iro
 ### Dataset Provenance
 The labMT 1.0 dataset (“language assessment by Mechanical Turk”) was created by Dodds et al. (2011) as part of their "hedonometer" work. The "hedonometer" is a tool that was designed to measure the average happiness of text collected from places like Twitter. The first thing the authors did was they selected 10,000 of the most frequently used English words and they were chosen based on how often they were used, not based on specialized words. Each word after that got rated by a few workers on Amazon Mechanical Turk on a scale from 1-9, 1 being very unhappy and 9 being very happy. Then they got these few ratings and calculated the average in order to produce a single happiness score by word. The standard deviation was then used to show the difference between the ratings. Then this word list was used to calculate the average happiness of collections of large texts by calculating an average happiness score where words that appear more often count more. In this way the dataset works as a word-based tool that measures how positive or negative large texts are.
 
-### Limitations and Consequences
+### Methodological Limitations
 Through the labMT dataset it's possible to analyze big texts of emotional language but there are a few important things that decide what it can and cannot do. The happiness ratings were collected from Mechanical Turk workers which is a specific demographic and culture. That means that the scores are a reflection of understanding of emotion that’s not the same across the different cultures. Second, they were rated without context. Normally emotional meanings on words depend on tone, the context they were used at. The dataset simplifies emotional meaning. Third, the method uses a single numerical scale to measure a complex emotional expression. However, the design also makes the analysis easier in some ways. The dataset makes it possible for researchers to see general patterns in large positive or negative large texts, and also to compare across different texts and time periods. At the same time the limitation is that it’s difficult to capture deeper meaning, who is speaking, or how culture influences the language. Therefore, the labMT dataset is a useful but simplified measurement tool. It allows us to analyze emotional language in very large texts, but we need to question the assumptions it makes on language and emotion.
 
 
