@@ -38,42 +38,54 @@ Below is a description of each column in the dataset, including its meaning, dat
 
 
 ## Methods
-### Data Cleaning
-The dataset was loaded as a tab-delimited file using pandas. The first two metadata rows were skipped. Missing values marked as "--" were converted to NaN.
-
-The final dataset contains 10,222 rows and 8 columns.
-
-We confirmed that:
-- No duplicate words are present.
-- All happiness-related variables are numeric.
-- Rank columns contain 5,222 missing values each, indicating words not present in the top 5000 most frequent words of the respective corpus.
-
-A cleaned dataset was saved as *`data/labmt_clean.csv`*.
-
-### What We Did
-In our own analysis we treated the labMT file as a tab-delimited dataset. We skipped the initial metadata lines, we converted the placeholder value “--” into missing values, and we converted the rank and happiness columns into real numbers so that we could calculate averages and create plots. We didn’t remove neutral words from the middle of the happiness scale. We analyzed the full distribution of happiness_average. We treated each word as having one fixed happiness score and also looked at how much raters opinions about words differentiated by using standard deviation. The missing rank values were interpreted as “not in the top-5000 list for that corpus,” and we handled missing values differently depending on the task. These decisions affect the analysis of our results. We are describing patterns in the word list and how it appears across different text collections. We are not measuring the emotional tone of a specific text collection.
-
+```mermaid
+flowchart TD
+    A[Load dataset] --> B[Remove metadata rows]
+    B --> C[Replace missing values with NaN]
+    C --> D[Convert data to numeric]
+    D --> E[Check data quality]
+    E --> F[Handle missing rank values]
+    F --> G[Save cleaned data]
+    G --> H[Set analysis choices]
+    H --> I[Define scope of analysis]
+```
 
 
 ## Results
 ### 1. Distribution of Happiness Scores
 ![Distribution of Happiness Scores](figures/hist_happiness_average.png)
 
-The histogram shows the distribution of happiness scores across the labMT lexicon. Most words cluster around the middle of the scale, with many values between about 4 and 7. Extremely positive and extremely negative words are less common, indicating that most words in the lexicon express moderate emotional valence rather than strong positivity or negativity.
+To understand the overall structure of the dataset, we examine the distribution of happiness scores using both summary statistics and a histogram. The mean happiness score is approximately 5.38, and the median is very close to this value, indicating that the distribution is centered around the middle of the scale. The standard deviation is about 1.08, suggesting a moderate spread in the data.
+
+The range of values extends from approximately 1.3 to 8.5, showing that the lexicon includes both very negative and very positive words. However, the 5th and 95th percentiles (around 3.18 and 7.08) indicate that most words fall within a narrower central interval, with relatively few extreme values.
+
+Visually, the histogram shows that the distribution is not perfectly symmetric. While it is roughly bell-shaped, there is a slight skew toward higher (more positive) values, meaning that moderately positive words are more common than strongly negative ones. The right tail extends into high happiness scores, but both tails are relatively thin, indicating that extreme values are less frequent.
+
+Overall, the distribution suggests that language in the labMT lexicon is concentrated around neutral to moderately positive emotional values, with fewer words expressing strong negativity or extreme positivity. This pattern implies a bias toward mildly positive expression in commonly used language.
 
 ### 2. Happiness vs Disagreement
 ![Happiness vs Disagreement](figures/scatter_avg_vs_sd.png)
 
-The scatter plot compares the average happiness score of each word with the level of disagreement among raters (standard deviation). Words with mid-range happiness scores tend to show greater disagreement, suggesting that they are more context-dependent or culturally contested. In contrast, words with very high or very low happiness scores often have lower disagreement, indicating stronger consensus about their emotional meaning.
+We examine the relationship between happiness scores and disagreement (standard deviation) using a scatterplot. While one might initially expect that words with very high or very low happiness scores would have more consistent evaluations, the plot suggests the opposite pattern.
+
+The scatterplot shows a clear fan-shaped distribution. Words near the neutral midpoint (around a happiness score of 5) tend to have lower disagreement, while words further away from neutrality—either more positive or more negative—exhibit higher levels of disagreement. This indicates that variability in ratings increases as words become more emotionally extreme.
+
+To make this pattern more interpretable, we label several key words directly on the plot. For example, suicide (the most negative word, happiness ≈ 1.3) and laughter (the most positive word, happiness ≈ 8.5) both lie toward the edges of the distribution, where disagreement begins to increase. More strikingly, words such as fucking and fuckin have some of the highest disagreement values (standard deviation ≈ 2.9 and 2.74), despite not being the most extreme in terms of happiness. These words are likely interpreted differently depending on context, tone, or speaker intention.
+
+The presence of such outliers highlights that disagreement is not driven solely by positivity or negativity, but also by ambiguity, slang usage, and cultural factors. Words with multiple meanings or strong emotional connotations tend to produce less consistent evaluations across annotators.
+
+The plot suggests that emotional intensity and contextual variability are closely linked: as words become more emotionally charged or context-dependent, agreement between raters decreases. This demonstrates that affective meaning in language is not fixed, but shaped by interpretation and usage.
 
 ### 3. Corpus Comparison
-![Corpus comparison](figures/bar_corpus_presence.png)
+![Corpus comparison](figures/heatmap_corpus_overlap.png)
 
-We compare how “common language” differs across four corpora: Twitter, Google Books, the New York Times, and song lyrics. Each rank column in the labMT dataset contains exactly the top 5000 words for that corpus, so simply counting non-missing values yields 5000 words for each source. For this reason, meaningful differences between corpora are better understood by examining overlap rather than raw counts.
+To better understand how “common language” varies across contexts, we compare the overlap between the top 5000 words in four corpora: Twitter, Google Books, the New York Times (NYT), and song lyrics. Because each corpus is constructed from its own top-5000 list, raw counts are not informative; instead, we examine how many words overlap between corpora.
 
-We find that only 2,881 words appear in both the Twitter and NYT top-5000 lists, and just 1,816 words appear in all four corpora. This indicates that what counts as “common” language varies substantially depending on where the language is observed.
+The heatmap shows that overlap varies substantially across pairs. Google Books and NYT share the highest overlap (3414 words), suggesting that both corpora reflect more formal, written language. In contrast, NYT and Lyrics have the lowest overlap (2241 words), indicating a strong difference in register: news language is more formal and informational, while lyrics tend to be more emotional and stylistically expressive.
 
-As a concrete example, laughter appears in the Twitter top-5000 list but not in the NYT top-5000 list. This likely reflects differences in register and usage: Twitter language tends to include more informal and emotionally expressive vocabulary, whereas newspaper language favors a more formal style.
+Twitter occupies an intermediate position. Its overlap with Lyrics (3127 words) is relatively high, reflecting shared informal and conversational elements, while its overlap with NYT (2881 words) is lower but still substantial. This suggests that Twitter contains a mix of informal expression and informational language.
+
+Overall, the results demonstrate that what counts as “common language” depends strongly on the corpus. Even when each corpus includes 5000 high-frequency words, the overlap between them is far from complete, highlighting differences in style, context, and usage across domains.
 
 
 
@@ -101,7 +113,13 @@ As a concrete example, laughter appears in the Twitter top-5000 list but not in 
 | Weird / culturally loaded (chosen) | porn       |                4.18 |                         2.4302 |
 | Weird / culturally loaded (chosen) | zombies    |                4    |                         2.3733 |
 
-This twenty word table shows that the LabMT happiness score collects culturally situated judgments rather than fixed emotional meanings. The words that score the highest in positive words (laughter, happiness, love, happy, laughed) are very strongly connected to feelings like joy, affection, and bonding and very clearly used in positive contexts. The very negative words on the other hand (terrorist, suicide, rape, terrorism, murder) have a very low score because they are connected to themes such as death, harm and violence, and are understood to be very negative regardless of what the context is. The “highly contested” words (fucking, fuckin, fucked, pussy, whiskey) show how disagreement can occur when the wrds used are too taboo, context dependent or slang, since slang can be used refering to sexual, humourous or insult. While whiskey can mean holding many meanings ranging to celebration, religion or addiction. And lastly, the weird/culturally loaded words (Christ, Islam, capitalism, porn, zombies) show how schools of thought, religion and certain aspects of media can shape someone’s interpretations. Religious terms on social media platforms can bring conflict or stigma to a conversation, whereas for others, it can be a form of identity expression and comfort. “Capitalism” can signal opportunity or exploitation depending on an indiciduals political stance. Words popular within pop culture, like “zombies”, can be used for entertainment in a playful manner or refer to fear, disgust or in reference to someone’s overall attitude. Hence a difference between these categories can show how the happiness score can be dependent on contextual and community based meanings as much as the disctionary meaning of certain terms. 
+This twenty word table we have created shows that the LabMT happiness score collects culturally situated judgments rather than fixed emotional meanings. The words that scored with the highest happiness scores (e.g., laughter = 8.50, happiness = 8.44, love = 8.42) are strongly associated with joy, affection, social bonding, and are consistently interpreted as something positive. The very negative words on the other hand (e.g., terrorist = 1.30, suicide = 1.30, rape = 1.44) have a very low score because they are connected to themes such as death, harm and violence, and are understood to be very negative regardless of what the context usually is. 
+
+The “highly contested” words (e.g., fucking SD = 2.93, fuckin SD = 2.74, fucked SD = 2.71) show how disagreement can occur when the words used are too taboo, context dependent or slang, since slang can be used refering to sexual, humourous or insult, which leads to variation in how they are interpreted. For example, whiskey (mean = 5.72, SD = 2.64) may be associated with celebration and social bonding for some, but when it comes to religion (mostly prohibition) addiction or harm to others, can explain its high level of disagreement.
+
+And lastly, the weird/culturally loaded words (e.g., Christ mean = 6.16, SD = 2.3; capitalism mean = 5.16, SD = 2.45; Islam mean = 4.68, SD = 2.33; porn mean = 4.18, SD = 2.43; Zombies mean = 4 SD = 2.37) show how schools of thought, religion and certain aspects of media may shape someone’s interpretations. Religious words and conversations on social media platforms usually bring conflict or stigma to a conversation more than a positive shared experience, whereas for other words, it may be a form of identity or comfort. The word “Capitalism” may be signal opportunity or exploitation depending on an individuals political stance, since its in the mid mean range it could mean that a mix of individuals with different political stances about capitalism. Lastly words that are popular within pop culture, like “zombies”, can be used for either entertainment in a playful manner, to express fear for them, disgust or refering to someone as a "zombie" based on their attitude or behaviour. Hence a difference between these categories can show how the happiness score can be dependent on contextual and community based meanings as much as the disctionary meaning of certain terms. 
+
+Overall the patterns we noticed show that higher disagreement (standard deviation) is linked to words with more ambiguity and context, whereas words that are universally understood tend to either have both extreme scores and/or lower variability. Suggesting that the emotional meaning of words within the dataset is shaped by the words but also by the perspectives of the people who used/ranked them. Since the ratings that were collected and we are using are from Mechanical Turk workers, so the dataset most likely reflects the cultural and ideological biases of the specific group of raters rather than a universal measure of these words.
 
 
 
@@ -150,91 +168,83 @@ In this mini-project, we use the labMT 1.0 hedonometer as a measurement instrume
 
 
 ## Research Question
-How has the emotional tone of New York Times headlines changed over time?
+How did the overall emotional tone of New York Times headlines evolve during the financial crisis period (2006–2011)?
 
 
 ## Data Acquisition and Dataset Preparation
-To investigate our research question, we first needed to construct a dataset of New York Times headlines that could later be analyzed using the Hedonometer (labMT) word list. This section focused on data acquisition and dataset preparation, which included collecting headline data from the New York Times API, organizing the files, and preparing a labeled dataset for analysis.
+
+Our research question for this project is: *How did the overall emotional tone of New York Times headlines evolve during the financial crisis period (2006–2011)?* To address this question, we constructed a dataset of New York Times headlines that could later be analyzed using the Hedonometer (labMT) word list. 
 
 ### Data Source
-The headline data was collected from the New York Times Archive API. The Archive API provides article metadata for each month of a given year, which makes it well suited for collecting large numbers of articles across different time periods. After obtaining an API key from the New York Times Developer portal, the API connection was first tested using small requests to confirm that the key was functioning properly.
 
-Once the connection was verified, data collection was automated using a Python script called *`nyt_headline_collector.py`*. This script uses the requests library to send API requests month by month and extract the relevant fields from the JSON responses returned by the API.
+The headline data was collected from the New York Times Archive API. The Archive API provides article metadata on a monthly basis, making it particularly suitable for collecting large volumes of articles across specific time periods. After obtaining an API key from the New York Times Developer portal, the connection was first tested using small requests to ensure that the key and request structure were functioning correctly.
 
-For each article, the script extracted the following fields:
+Once the API connection was verified, data collection was automated using a Python script (*`nyt_headlines.py`*). This script uses the *`requests`* library to retrieve monthly archive data and extract the relevant fields from the returned JSON structure. For each article, the script extracts the main headline (*`headline.main`*) and the publication date (*`pub_date`*). The extracted data is then written to CSV files for further processing.
 
-**headline** (headline.main) – the main article headline  
-**pub_date** – the article publication date
-
-The script saved the collected data as CSV files, allowing the data to be easily inspected and processed later.
+To run this script, you must obtain your own New York Times API key from the NYT Developer Portal and replace "*YOUR_API_KEY*" in the script. The script uses the NYT Archive API to retrieve article data. For security reasons, API keys are not included in this repository.
 
 ### Data Collection Process
-The collection process was first tested on a small subset of the data to ensure that the API requests, parsing, and file writing were functioning correctly. Because the NYT API applies rate limits, requests were spaced using time delays to avoid exceeding the allowed quota.
 
-For this project, headlines were collected for three comparison years: 2000, 2010, and 2020. These years were chosen as representative points in time across two decades. Rather than collecting every year within each decade, selecting one year from each period allowed us to observe long-term changes while keeping the dataset manageable.
+The data collection process was carried out month-by-month across three defined periods surrounding the 2008 financial crisis. The crisis period was defined as September 2008 to June 2009, corresponding to the period following the collapse of Lehman Brothers. To enable a balanced comparison, two 24-month windows were defined before and after the crisis period.
 
-During the data acquisition stage, the API returned article data month by month. These monthly results were written to CSV files and later combined into yearly datasets. After collecting the data for each target year, the yearly files were merged into a single dataset containing headlines from all three years.
+The final time ranges are summarized below:
 
-### Dataset Size and Balancing
+| Period | Time Range          | Duration  |
+| ------ | ------------------- | --------- |
+| Before | Sep 2006 – Aug 2008 | 24 months |
+| During | Sep 2008 – Jun 2009 | 10 months |
+| After  | Jul 2009 – Jun 2011 | 24 months |
 
-After the data collection process was completed, we examined the number of headlines available for each year. The datasets were not identical in size, largely due to API limitations and variations in the available data returned by the archive endpoint.
+For each month within these periods, all available headlines were retrieved via the API. From this pool, a random sample of up to 500 headlines per month was selected. Sampling was performed independently for each month in order to maintain temporal consistency across the dataset.
 
-The number of collected headlines for each year was approximately:
+Because the NYT API imposes rate limits, requests were spaced using time delays, and retry logic was implemented to handle temporary quota violations. When a rate limit error occurred, the script paused and retried the same request to ensure that no monthly data was skipped. The collection process was first tested on a small subset of months to ensure that API calls, parsing, and file writing were functioning correctly before running the full data acquisition.
 
-| Year | Number of Headlines |
-| ---- | ------------------- |
-| 2000 | ~102,800            |
-| 2010 | ~112,440            |
-| 2020 | ~55,421             |
+### Dataset Construction
 
-Because our research question involves comparing emotional tone across years, it is important that each year contributes a similar amount of data. If one year contained significantly more headlines than another, the analysis results could be biased toward that larger dataset.
+All datasets included in this repository are processed data rather than raw data. The original data was obtained from the New York Times Archive API in structured JSON format, but during collection, the data was transformed by selecting relevant fields, applying random sampling, and assigning period labels. As a result, the repository does not contain raw API outputs, but instead provides structured datasets prepared for analysis.
 
-To ensure a fair comparison, we standardized the dataset size across all three years. Since 2020 contained the smallest number of headlines (55,421), we used this number as the reference value. For the years 2000 and 2010, which originally contained larger datasets, we will use only 55,421 headlines from each year in the analysis. This ensures that all three time periods contribute an equal number of observations.
+The collected data for each period was initially stored in separate CSV files (*`nyt_before.csv`*, *`nyt_during.csv`*, and *`nyt_after.csv`*). These files were then combined into a single dataset (*`nyt_all_periods.csv`*) containing all sampled headlines across the three periods.
 
-Balancing the dataset in this way prevents one year from disproportionately influencing the overall sentiment measurements.
+Each row in the dataset includes the headline text, publication date, and corresponding time period (Before, During, After), along with the year and month of publication. This structure allows for straightforward grouping and comparison across time.
 
-### Creating the Labeled Dataset
-
-In addition to balancing the dataset, we created a labeled version of the dataset to support later analysis steps. The initial collected files contained only the headline text and publication date. However, in order to compare the emotional tone of headlines across years, it is necessary to explicitly identify which year each headline belongs to.
-
-To accomplish this, an additional column called *year* was added to the dataset using the script *`add_year_column.py`*. This script extracts the year from the publication date and assigns it to a new column.
-
-The final labeled dataset contains three columns:
-
-| Column   | Description                                                |
-| -------- | ---------------------------------------------------------- |
-| headline | The New York Times article headline                        |
-| pub_date | The publication date of the article                        |
-| year     | The labeled year used for comparison (2000, 2010, or 2020) |
-
-Below is an example row from the labeled dataset:
-
+Below is an example row from the dataset:
 ```
-headline,pub_date,year
-A Look Back: The Defining Performances,2010-02-28T23:16:30+0000,2010
+period,year,month,headline,pub_date
+After,2011,4,Woman Killed When Cab Crashes Into Bronx Store,2011-04-22T02:37:22+0000
 ```
 
-This labeled dataset allows the analysis scripts to easily group headlines by year and compute metrics such as average happiness scores for each time period.
+### Duplicate Handling
+
+During the dataset preparation stage, duplicate entries were identified and examined. Duplicates were defined as rows with identical headline text and identical publication date, which indicates that the same article was included more than once during the collection or merging process.
+
+A total of 88 exact duplicate rows were identified in the combined dataset. These duplicates were removed to produce a cleaned dataset (*`nyt_all_periods_clean.csv`*). Importantly, headlines that appeared multiple times on different dates were retained, as these represent valid and distinct observations in the dataset.
+
+After duplicate removal, some months contain slightly fewer than 500 headlines. This is expected and reflects the elimination of repeated entries rather than a loss of unique data.
 
 ### Data Validation
 
-Before proceeding to the analysis stage, basic checks were performed to ensure that the dataset had been correctly assembled. The script *`check_duplicates.py`* was used to identify potential duplicate entries in the dataset. This step helped confirm that the combined dataset did not contain a large number of repeated headlines resulting from the merging process.
+Basic validation checks were performed to ensure the integrity of the dataset. This included verifying the number of headlines collected per month and confirming that the data was correctly labeled by period. The dataset was also inspected for structural consistency after merging and cleaning.
 
-Although minor irregularities such as repeated header rows occurred during early file merging, these did not significantly affect the dataset. The final dataset still contains hundreds of thousands of headlines and provides a sufficiently large corpus for sentiment analysis.
+The final cleaned dataset contains approximately 28,900 headlines sampled across all periods. A summary of the dataset is shown below:
+
+| Metric                    | Value     |
+| ------------------------- | --------- |
+| Total headlines (cleaned) | 28,934   |
+| Sampling size per month   | Up to 500 |
+| Duplicate rows removed    | 88        |
+| Number of periods         | 3         |
 
 ### Final Dataset
 
-The final dataset used for analysis is stored as *`data/nyt_headlines_labeled.csv`*
+The final dataset used for analysis is stored as: *`data/nyt_economic_crisis/nyt_all_periods_clean.csv`*
 
-This file contains approximately 270,000 headlines in total, drawn from the three comparison years. After balancing the dataset for fairness, 55,421 headlines from each year will be used for the emotional tone analysis.
-
-This dataset forms the foundation for the later stages of the project, where the emotional tone of headlines will be measured using the Hedonometer word list and compared across different years.
+This dataset forms the basis for the next stage of the project, where the emotional tone of headlines will be measured using the Hedonometer word list and compared across different phases of the financial crisis.
 
 
 
 
 ## Measurement
-In this part, we measure the emotional tone of New York Times headlines using the LabMT sentiment lexicon. Our dataset contains NYT headlines from three different years (2000, 2010, and 2020), which allows us to compare how the emotional tone of headlines may have changed over time.
+This project measures the overall emotional tone of New York Times headlines across 2008 financial crisis. We implement a hedonometer-based approach using the labMT lexicon to assign a happiness score to each headline.
 
 ### Method
 The emotional tone of each headline is computed using the following pipeline:
@@ -252,22 +262,47 @@ F --> H[Coverage Ratio = Matched Words divided by Total Words]
 G --> H
 ```
 
+### Coverage Ratio
+To evaluate how much of each headline is represented in the lexicon, we compute a coverage ratio: overage ratio = matched words / total words. This metric indicates the proportion of words that contribute to the happiness score.
+
 ### Output
-The processed dataset is saved as *`data/nyt_headlines_scored_v2.csv`*.
+
+The processed dataset is saved as *data/nyt_economic_crisis/nyt_all_periods_scored.csv*.
 
 This dataset contains the following variables:
+
 | Column | Description |
-|------|------|
+|--------|------------|
+| period | Time period relative to the 2008 economic crisis (before / during / after) |
+| year | Extracted year from the publication date |
+| month | Extracted month from the publication date |
 | headline | NYT article headline |
 | pub_date | Original publication date |
-| year | Extracted year from the publication date |
-| happiness_score | Average labMT happiness score of matched words |
+| happiness_score | Average labMT happiness score of matched words in the headline |
 | matched_words | Number of words in the headline found in the labMT lexicon |
 | total_words | Total number of words in the headline |
-| coverage_ratio | Proportion of words matched with the lexicon |
+| coverage_ratio | Proportion of words matched with the lexicon (matched_words / total_words) |
+
+### Notes on Measurement
+
+- The **happiness_score** is computed only from words that exist in the labMT lexicon.  
+- Words not found in the lexicon (out-of-vocabulary, OOV) are excluded from the calculation.  
+- If a headline contains no matched words, its happiness score is recorded as missing (`None`).  
+
+The **coverage_ratio** serves as a diagnostic indicator of how representative the computed sentiment is:
+- Higher coverage suggests more reliable sentiment estimation  
+- Lower coverage indicates that many words are not captured by the lexicon  
 
 
-This dataset will be used in the next stage to design the sampling strategy, compute uncertainty measures, and produce statistical inference plots to compare the emotional tone of headlines across the selected years.
+### Usage
+
+This dataset will be used in the next stage of the project to:
+
+- Compare emotional tone across crisis periods   
+- Design sampling strategies  
+- Compute uncertainty measures (e.g., confidence intervals, bootstrapping)  
+- Produce statistical inference plots  
+
 
 
 
