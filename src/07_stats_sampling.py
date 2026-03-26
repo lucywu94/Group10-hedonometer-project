@@ -272,6 +272,7 @@ plt.errorbar(
     fmt="none",
     capsize=5
 )
+plt.ylim(lower.min() - 0.005, upper.max() + 0.005)
 
 for i, v in enumerate(means):
     plt.text(
